@@ -1,0 +1,18 @@
+<div>
+  <h1 class="text-2xl mb-6 font-semibold text-hazy-sky-800 ">Crear categoria</h1>
+</div>
+<form [formGroup]="formCrearCategoria" class="grid gap-x-4 gap-y-2 mb-8"
+[class]="isMobile()?'grid-cols-1':'grid-cols-1'"
+>
+  <div class="flex flex-col col-span-full">
+    <label class="mb-2 font-medium">Nombre</label>
+    <input formControlName="nombre_categoria" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('nombre_categoria')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('nombre_categoria')? 'visible':'invisible'">Campo requerido.</span>
+  </div>  
+
+</form>
+<div class="flex justify-end gap-5 font-medium">
+  <button class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>
+  <button (click)="crearCategoria()" class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Crear categoria</button>
+</div>

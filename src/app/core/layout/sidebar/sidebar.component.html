@@ -1,0 +1,40 @@
+<aside class="overflow-y-auto py-5 px-3 h-full bg-hazy-sky-900 text-great-blue-50">
+  <ul class="space-y-2 font-medium">
+    @for(item of menuItems; track $index){
+      <li >
+        @if(!item.subItems){
+          <a [routerLink]="item.route" class="flex items-center p-2 hover:bg-hazy-sky-800 transition-all rounded-lg">
+            <div [innerHTML]="item.svg" class="w-6 h-6"></div>
+            <span class="ms-3">{{ item.title }}</span>
+          </a>
+        }
+        @if(item.subItems){
+          <button type="button" (click)="toggleDropdown(item.title)" class="hover:bg-hazy-sky-800 flex items-center w-full p-2 transition-all rounded-lg">
+            <div [innerHTML]="item.svg" class="w-6 h-6"></div>
+            <span class="flex-1 ms-3 text-left ">{{ item.title }}</span>
+            <div [ngStyle]="{ transform: dropdownStates[item.title] ? 'rotate(90deg)' : 'rotate(0deg)' , transition: 'ease-in-out 200ms'}" >
+              <svg 
+              class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+              </svg>  
+            </div>                            
+          </button>
+        }
+        @if(item.subItems && dropdownStates[item.title] ){
+          <div @expandMenu>
+            <ul class="py-2 space-y-2">
+              @for (subItem of item.subItems; track $index) {
+                <li >
+                  <a [routerLink]="subItem.route" class="flex items-center w-full p-2 hover:bg-hazy-sky-800 transition-all rounded-lg pl-8 ">
+                    <div [innerHTML]="subItem.svg" class="w-6 h-6"></div>
+                    <span class="ms-3">{{ subItem.title }}</span>
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </li>
+    }
+  </ul>
+</aside>

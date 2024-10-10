@@ -1,0 +1,60 @@
+<div>
+  <h1 class="text-2xl mb-6 font-semibold text-hazy-sky-800 ">Crear recurso</h1>
+</div>
+<form [formGroup]="fromCrearRecurso" class="grid gap-x-4 gap-y-2 mb-8"
+[class]="isMobile()?'grid-cols-2':'grid-cols-3'"
+>
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">ID DICI</label>
+    <input formControlName="id_dici" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('id_dici')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('id_dici')? 'visible':'invisible'">Campo requerido.</span>
+  </div>  
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">ID UTA</label>
+    <input formControlName="id_uta" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('id_uta')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('id_uta')? 'visible':'invisible'">Campo requerido.</span>
+  </div>
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">Categorias</label>
+    <select formControlName="categoria" class="bg-blue-sky focus:outline-none border rounded-lg p-2.5"
+    [class]="hasRequiredError('categoria')? 'border-red-600':'border-hazy-sky-600'">
+      <option value=""  selected>Eligue una categoria</option>
+      @for(categoria of categoriasState().categorias; track $index){
+        <option class="bg-blue-sky text-hazy-sky-800 " value="{{categoria.id_categoria}}">{{categoria.nombre_categoria}}</option>
+      }
+    </select>
+  </div>
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">Modelo</label>
+    <input formControlName="modelo" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('modelo')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('modelo')? 'visible':'invisible'">Campo requerido.</span>
+  </div>
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">Marca</label>
+    <input formControlName="marca" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('marca')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('marca')? 'visible':'invisible'">Campo requerido.</span>
+  </div>
+  <div class="flex flex-col">
+    <label class="mb-2 font-medium">Ubicacion</label>
+    <input formControlName="ubicacion" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('ubicacion')? 'border-red-600':'border-hazy-sky-600'"/>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('ubicacion')? 'visible':'invisible'">Campo requerido.</span>
+  </div>
+
+  <div class="flex flex-col col-span-full">
+    <label class="mb-2 font-medium">Descripcion</label>
+    <textarea formControlName="descripcion" class="resize-none h-20 bg-blue-sky focus:outline-none border rounded-lg p-2"
+    [class]="hasRequiredError('descripcion')? 'border-red-600':'border-hazy-sky-600'"
+    ></textarea>
+    <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('descripcion')? 'visible':'invisible'">Campo requerido.</span>     
+    </div>
+</form>
+<div class="flex justify-end gap-5 font-medium">
+  <button class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>
+  <button (click)="crearRecurso()" class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Crear recurso</button>
+</div>
+

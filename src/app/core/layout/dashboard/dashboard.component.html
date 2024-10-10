@@ -1,0 +1,6 @@
+<app-navbar [isMobile]="isMobile()" class="fixed left-0 right-0 top-0 z-50" (collapsed)="updateCollapsed()"></app-navbar>
+<app-sidebar #sidebar [ngClass]="{'transform-none': collapsed(), '-translate-x-full': !collapsed(), 'translate-x-0': !isMobile()}" class="fixed top-0 left-0 z-40 w-64 h-screen pt-16 transition-transform" [collapsed]="collapsed()"></app-sidebar>
+<main #main class="min-h-screen h-auto pt-24" [class]="isMobile()?'ml-0 p-4 ':'ml-64 p-8'">
+  <router-outlet></router-outlet>
+</main>
+<div (click)="updateCollapsed()" [class]="collapsed()?'translate-x-64':'translate-x-full'" class=" fixed bg-great-blue-950/50 inset-0 z-30 transition-all" ></div>
