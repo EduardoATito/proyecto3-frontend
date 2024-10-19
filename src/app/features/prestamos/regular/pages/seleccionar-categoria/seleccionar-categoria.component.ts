@@ -41,7 +41,11 @@ export class SeleccionarCategoriaComponent implements OnInit {
     });
   }
 
-  onPrestar(){
-    this.router.navigate(['/prestamos/gestion/:categoria']);
+  onPrestar(id_categoria: number){
+    this.router.navigate([`/prestamos/regular/${id_categoria}`]);
+  }
+
+  onDevolver(id_categoria: number){
+    this.router.navigate(['/prestamos/devolver']);
   }
 }

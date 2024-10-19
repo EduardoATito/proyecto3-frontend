@@ -1,0 +1,23 @@
+<div class="flex flex-col items-center">
+  @if(isPermissionChecked){
+    <div class="mb-4" >
+      @if(!hasCameraPermission){
+        <button class="bg-hazy-sky-800 text-hazy-sky-50 p-3 rounded-lg" (click)="checkCameraAccess()">Permitir cámara</button>
+      }@else {
+        <h2 class="text-hazy-sky-900 text-2xl font-semibold">Escanea el código QR</h2>
+      }
+    </div>
+  }
+  <div class="min-w-[1054px] min-h[576px] ">
+    <ngx-scanner-qrcode class="border-hazy-sky-900 border-8 rounded-lg"
+      #action="scanner" 
+      [config]="config" 
+      [canvasStyles]="[
+        { lineWidth: 2, strokeStyle: 'black', fillStyle: '#00FF0000 ' },
+      ]"
+      [class.hide]="!action.isStart"
+      (event)="onScanData($event)"
+    >
+    </ngx-scanner-qrcode>
+  </div>
+</div>

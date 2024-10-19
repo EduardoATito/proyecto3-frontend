@@ -21,6 +21,10 @@ export class RecursosService {
     return this.httpClient.get(`${this.BASE_URL}/recursos/${id_uta}`);
   }
 
+  getRecursosByCategoria(id_categoria: number) : Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/categorias/${id_categoria}/recursos`);
+  }
+
   crearRecurso( recurso: any) {
     return this.httpClient.post(`${this.BASE_URL}/recursos`, recurso);
   }

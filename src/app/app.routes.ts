@@ -6,9 +6,18 @@ export const routes: Routes = [
       { path: 'prestamos/regular', loadComponent: () => 
         import('./features/prestamos/regular/pages/seleccionar-categoria/seleccionar-categoria.component').
         then(c => c.SeleccionarCategoriaComponent) },
-      { path: 'prestamos/gestion/:categoria', loadComponent: () => 
+      { path: 'prestamos/regular/:id_categoria', loadComponent: () => 
         import('./features/prestamos/regular/pages/seleccionar-recurso/seleccionar-recurso.component').
         then(c => c.SeleccionarRecursoComponent)},
+      { path: 'prestamos/regular/:id_categoria/:id_uta', loadComponent: () => 
+        import('./features/prestamos/regular/pages/seleccionar-estudiante/seleccionar-estudiante.component').
+        then(c => c.SeleccionarEstudianteComponent)},
+      { path: 'prestamos/regular/:id_categoria/:id_uta/metodo-qr', loadComponent: () => 
+        import('./features/prestamos/regular/pages/metodo-qr/metodo-qr.component').
+        then(c => c.MetodoQrComponent)},
+      { path: 'prestamos/regular/:id_categoria/:id_uta/:rut', loadComponent: () => 
+        import('./features/prestamos/regular/pages/confirmar-prestamo/confirmar-prestamo.component').
+        then(c => c.ConfirmarPrestamoComponent)},
       { path: 'inventario/recursos', loadComponent: () => 
         import('./features/inventario/recursos/pages/gestion-recursos/gestion-recursos.component').
         then(c => c.GestionRecursosComponent)},
