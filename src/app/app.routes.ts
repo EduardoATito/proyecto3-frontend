@@ -33,6 +33,12 @@ export const routes: Routes = [
       { path: 'inventario/categorias/crear-categoria', loadComponent: () => 
         import('./features/inventario/categorias/pages/crear-categoria/crear-categoria.component').
         then(c => c.CrearCategoriaComponent)},
+      { path: 'inventario/categorias/editar-categoria/:id', loadComponent: () => 
+        import('./features/inventario/categorias/pages/editar-categoria/editar-categoria.component').
+        then(c => c.EditarCategoriaComponent)},
+      { path: 'usuarios/', loadComponent: () => 
+        import('./features/inventario/categorias/pages/editar-categoria/editar-categoria.component').
+        then(c => c.EditarCategoriaComponent)},
     ]
   },
   { path: 'login', loadComponent: () => 

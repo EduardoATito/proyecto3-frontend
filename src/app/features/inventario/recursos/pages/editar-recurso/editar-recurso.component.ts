@@ -103,8 +103,6 @@ export class EditarRecursoComponent {
         this.toastrService.success('Recurso editado con éxito', 'Éxito',{ positionClass: 'toast-bottom-center'});
       },
       error: (res) => {
-        console.log(recurso);
-        console.log(res);
         this.toastrService.error(res.error.message, 'Error',{ positionClass: 'toast-bottom-center'});
       }
     });

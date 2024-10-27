@@ -27,6 +27,7 @@ export class CrearRecursoComponent implements OnInit{
 
   public fromCrearRecurso = this.formGroup.group({
     id_dici: ['', [Validators.required]],
+    nombre: ['', [Validators.required]],
     id_uta: ['', Validators.required],
     marca: ['', Validators.required],
     modelo: ['', Validators.required],
@@ -62,8 +63,11 @@ export class CrearRecursoComponent implements OnInit{
       ubicacion: this.fromCrearRecurso.get('ubicacion')?.value!,
       id_categoria: +this.fromCrearRecurso.get('categoria')?.value!,
       descripcion: this.fromCrearRecurso.get('descripcion')?.value!,
+      nombre: this.fromCrearRecurso.get('nombre')?.value!,
       fecha_ingreso: new Date(),
     }
+
+    console.log(recurso);
 
     this.recursoService.crearRecurso(recurso).subscribe({
       next: () => {

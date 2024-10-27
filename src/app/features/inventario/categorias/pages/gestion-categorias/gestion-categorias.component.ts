@@ -46,4 +46,8 @@ export class GestionCategoriasComponent implements OnInit {
   crearCategoria(){
     this.router.navigate(['/inventario/categorias/crear-categoria']);
   }
+
+  editarCategoria(id_categoria: number){
+    this.router.navigate([`/inventario/categorias/editar-categoria/${id_categoria}`]);
+  }
 }

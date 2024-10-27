@@ -40,9 +40,7 @@ export class MetodoQrComponent {
   }
 
   ngOnDestroy(): void {
-    if(this.scanner.isStart){
-      this.scanner.stop();
-    }
+    this.scanner.stop();
   }
 
   ngAfterViewInit(): void {

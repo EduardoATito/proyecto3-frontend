@@ -32,18 +32,16 @@ export class CrearCategoriaComponent {
       return;
     }
 
-    const categoria = {
+    const categoria : any = {
       nombre_categoria: this.formCrearCategoria.get('nombre_categoria')?.value,
       fecha_creacion: this.formCrearCategoria.get('fecha_creacion')?.value,
     };
 
-    console.log(categoria);
 
     this.categoriasService.crearCategoria(categoria).subscribe({
       next: () => {
         this.toastrService.success('Categoria creada con exito', 'Exito', {positionClass: 'toast-bottom-center'});
       },error: (err) => {
-        console.log(err);
         this.toastrService.error('Error al crear la categoria', 'Error', {positionClass: 'toast-bottom-center'});
       }
     });

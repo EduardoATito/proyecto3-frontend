@@ -3,6 +3,7 @@ export interface AllRecursosReponse {
   descripcion: string;
   fecha_ingreso: Date;
   modelo: string;
+  nombre: string;
   estado_recurso: boolean;
   id_categoria: number;
   id_dici: string;
