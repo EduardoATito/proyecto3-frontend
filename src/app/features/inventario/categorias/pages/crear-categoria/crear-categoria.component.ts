@@ -22,7 +22,6 @@ export class CrearCategoriaComponent {
 
   public formCrearCategoria = this.formBuilder.group({
     nombre_categoria: ['', Validators.required],
-    fecha_creacion: new Date(),
   });
 
   crearCategoria() {
@@ -34,7 +33,7 @@ export class CrearCategoriaComponent {
 
     const categoria : any = {
       nombre_categoria: this.formCrearCategoria.get('nombre_categoria')?.value,
-      fecha_creacion: this.formCrearCategoria.get('fecha_creacion')?.value,
+      fecha_creacion: new Date(),
     };
 
 
