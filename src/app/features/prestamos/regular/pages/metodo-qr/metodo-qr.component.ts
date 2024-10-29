@@ -54,9 +54,9 @@ export class MetodoQrComponent {
         this.scanner.stop();
         const scannedValue = data[0].value;
         const id_categoria = this.activateRoute.snapshot.params['id_categoria'];
-        const id_uta = this.activateRoute.snapshot.params['id_uta'];
+        const id_dici = this.activateRoute.snapshot.params['id_dici'];
         const rut_estudiante = scannedValue; 
-        this.router.navigate([`/prestamos/regular/${id_categoria}/${id_uta}/${rut_estudiante}`]);
+        this.router.navigate([`/prestamos/regular/${id_categoria}/${id_dici}/${rut_estudiante}`]);
       }
     });
   }

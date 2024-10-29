@@ -38,8 +38,8 @@ export class SeleccionarRecursoComponent implements OnInit {
       }
     });
   }
-  onPrestar(id_uta : string){
+  onPrestar(id_dici : string){
     const route = this.router.url;
-    this.router.navigate([`${route}/${id_uta}`]);
+    this.router.navigate([`${route}/${id_dici}`]);
   }
 }

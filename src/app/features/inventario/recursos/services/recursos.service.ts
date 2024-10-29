@@ -17,7 +17,7 @@ export class RecursosService {
     return this.httpClient.get(`${this.BASE_URL}/recursos`);
   }
 
-  getRecursoByIdUTA(id_uta: number) : Observable<any> {
+  getRecursoByIdDICI(id_uta: number) : Observable<any> {
     return this.httpClient.get(`${this.BASE_URL}/recursos/${id_uta}`);
   }
 
@@ -31,5 +31,9 @@ export class RecursosService {
 
   editarRecurso(id_uta: number,recurso: any) {
     return this.httpClient.patch(`${this.BASE_URL}/recursos/${id_uta}`, recurso);
+  }
+
+  eliminarRecurso(id_uta: string) {
+    return this.httpClient.delete(`${this.BASE_URL}/recursos/${id_uta}`);
   }
 }

@@ -3,7 +3,10 @@
     @for(item of menuItems; track $index){
       <li >
         @if(!item.subItems){
-          <a [routerLink]="item.route" class="flex items-center p-2 hover:bg-hazy-sky-800 transition-all rounded-lg">
+          <a [routerLink]="item.route" class="flex items-center p-2 hover:bg-hazy-sky-800 transition-all rounded-lg"
+            routerLinkActive='bg-hazy-sky-800'
+            [routerLinkActiveOptions]="{ exact: true }"
+            >
             <div [innerHTML]="item.svg" class="w-6 h-6"></div>
             <span class="ms-3">{{ item.title }}</span>
           </a>
@@ -25,7 +28,10 @@
             <ul class="py-2 space-y-2">
               @for (subItem of item.subItems; track $index) {
                 <li >
-                  <a [routerLink]="subItem.route" class="flex items-center w-full p-2 hover:bg-hazy-sky-800 transition-all rounded-lg pl-8 ">
+                  <a [routerLink]="subItem.route" class="flex items-center w-full p-2 hover:bg-hazy-sky-800 transition-all rounded-lg pl-8 "
+                  routerLinkActive='bg-hazy-sky-800'
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >
                     <div [innerHTML]="subItem.svg" class="w-6 h-6"></div>
                     <span class="ms-3">{{ subItem.title }}</span>
                   </a>

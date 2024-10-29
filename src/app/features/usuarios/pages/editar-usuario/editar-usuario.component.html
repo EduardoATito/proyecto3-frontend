@@ -1,0 +1,55 @@
+@if(loading()){
+  <app-spinner></app-spinner>
+}@else {
+  <div>
+    <h1 class="text-2xl mb-6 font-semibold text-hazy-sky-800 ">Crear Usuario</h1>
+  </div>
+  <form [formGroup]="fromEditarUsuario" class="grid gap-x-4 gap-y-2 mb-8"
+  [class]="isMobile()?'grid-cols-1':'grid-cols-3'"
+  >  
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Nombre</label>
+      <input formControlName="nombre" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('nombre')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('nombre')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Usuario</label>
+      <input formControlName="usuario" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('usuario')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('usuario')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Rut</label>
+      <input formControlName="rut" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('rut')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('rut')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Categorias</label>
+      <select formControlName="rol" class="bg-blue-sky focus:outline-none border rounded-lg p-2.5"
+      [class]="hasRequiredError('rol')? 'border-red-600':'border-hazy-sky-600'">
+        <option value=""  selected>Eligue una categoria</option>
+        @for(rol of roles; track $index){
+          <option class="bg-blue-sky text-hazy-sky-800 " value="{{rol}}">{{rol}}</option>
+        }
+      </select>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Correo</label>
+      <input formControlName="correo" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('correo')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('correo')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Contraseña</label>
+      <input formControlName="password" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('password')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('password')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+  </form>
+  <div class="flex justify-end gap-5 font-medium">
+    <button class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>
+    <button (click)="editarUsuario()" class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Editar usuario</button>
+  </div>  
+}

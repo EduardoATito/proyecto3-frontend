@@ -7,9 +7,7 @@ html,body {
   background-color: #F1F5F9;
 }
 
-/* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
 
-/* position */
 .toast-center-center {
   top: 50%;
   left: 50%;
@@ -199,3 +197,5 @@ button.toast-close-button {
     width: 25em;
   }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -5,6 +5,9 @@ import { DatePipe } from '@angular/common';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EliminarCategoriaComponent } from '../eliminar-categoria/eliminar-categoria.component';
+
 
 @Component({
   selector: 'app-gestion-categorias',
@@ -30,6 +33,8 @@ export class GestionCategoriasComponent implements OnInit {
   public categorias = computed(() => this.categoriasState().categorias);
   public loading = computed(() => this.categoriasState().loading);
 
+  public eliminarCategoriaDialog = inject(MatDialog);
+
   ngOnInit(): void {
     this.getAllCategorias();
   }
@@ -49,5 +54,15 @@ export class GestionCategoriasComponent implements OnInit {
 
   editarCategoria(id_categoria: number){
     this.router.navigate([`/inventario/categorias/editar-categoria/${id_categoria}`]);
+  }
+
+  dialogEliminarCategoria(id_categoria: number){
+    this.eliminarCategoriaDialog.open(EliminarCategoriaComponent, {
+      width: '600px',
+      enterAnimationDuration: 200,
+      exitAnimationDuration: 200,
+      data: {id_categoria},
+      position: {top: '300px'}
+    });
   }
 }

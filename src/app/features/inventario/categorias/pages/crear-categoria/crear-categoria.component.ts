@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LayoutService } from '../../../../../core/layout/layout.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-categoria',
@@ -17,6 +18,7 @@ export class CrearCategoriaComponent {
   private formBuilder = inject(FormBuilder);
   private categoriasService = inject(CategoriasService);
   private toastrService = inject(ToastrService);
+  private router = inject(Router);
 
   public isMobile = computed(() => this.layoutService.isMobile());
 
@@ -39,6 +41,7 @@ export class CrearCategoriaComponent {
 
     this.categoriasService.crearCategoria(categoria).subscribe({
       next: () => {
+        this.router.navigate(['/inventario/categorias']);
         this.toastrService.success('Categoria creada con exito', 'Exito', {positionClass: 'toast-bottom-center'});
       },error: (err) => {
         this.toastrService.error('Error al crear la categoria', 'Error', {positionClass: 'toast-bottom-center'});

@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Estudiante } from '../../interfaces/estudiante.interface';
 import { RecursosService } from '../../../../inventario/recursos/services/recursos.service';
 import { AllRecursosReponse } from '../../../../inventario/recursos/interfaces/recursos.interface';
-import { S } from '@angular/cdk/keycodes';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 
 @Component({
@@ -46,9 +45,12 @@ export class ConfirmarPrestamoComponent {
   }
 
   setRecurso() {
-    const id_uta = this.activateRouter.snapshot.params['id_uta'];
-    this.recursoService.getRecursoByIdUTA(id_uta).subscribe((recurso) => {
+    const id_dici = this.activateRouter.snapshot.params['id_dici'];
+    this.recursoService.getRecursoByIdDICI(id_dici).subscribe((recurso) => {
       this.recursoState.set({loading: false, recurso});
     });
+  }
+
+  confirmarPrestamo() {
   }
 }

@@ -43,10 +43,6 @@ export class CrearRecursoComponent implements OnInit{
     }); 
   }
 
-  clickDropMenuCategorias() {
-    this.dropMenuCategorias.set(!this.dropMenuCategorias());
-  }
-
   crearRecurso() {
 
     if(this.fromCrearRecurso.invalid){

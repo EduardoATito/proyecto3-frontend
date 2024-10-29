@@ -6,11 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrearCategoria } from '../../interfaces/crear-categoria.interface';
 import { CategoriasResponse } from '../../interfaces/categorias.interface';
+import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-editar-categoria',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SpinnerComponent],
   templateUrl: './editar-categoria.component.html',
   styleUrl: './editar-categoria.component.css'
 })
@@ -30,7 +31,6 @@ export class EditarCategoriaComponent implements OnInit {
 
   public formEditarCategoria = this.formBuilder.group({
     nombre_categoria: ['', Validators.required],
-    fecha_creacion: new Date().toISOString(),
   });
 
   ngOnInit(): void {
@@ -60,11 +60,12 @@ export class EditarCategoriaComponent implements OnInit {
       this.toastrService.error('Porfavor complete los campos', 'Error', {positionClass: 'toast-bottom-center'});
       return;
     }
-    console.log(this.formEditarCategoria.value);
+    
     const categoria : any = {
       nombre_categoria: this.formEditarCategoria.get('nombre_categoria')?.value,
-      fecha_creacion: this.formEditarCategoria.get('fecha_creacion')?.value,
+      fecha_creacion: new Date(),
     };
+    console.log(categoria);
 
     const idCategoria = +this.activateRouter.snapshot.params['id'];
 

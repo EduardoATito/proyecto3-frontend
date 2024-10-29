@@ -55,14 +55,15 @@ export class EditarRecursoComponent {
 
   ngOnInit(): void {
 
-    this.setRecursoByIdUTA();
+    this.setRecursoByIdDICI();
     this.setAllCategorias();
 
   }
 
-  setRecursoByIdUTA() {
+  setRecursoByIdDICI() {
     const recursoIdUta = this.activateRouter.snapshot.params['id']
-    this.recursoService.getRecursoByIdUTA(recursoIdUta).subscribe((recurso) => {
+    console.log(recursoIdUta);
+    this.recursoService.getRecursoByIdDICI(recursoIdUta).subscribe((recurso) => {
       console.log(recurso);
       this.recursoState.set({loading: false, recurso});
       if(!recurso) {
@@ -98,7 +99,7 @@ export class EditarRecursoComponent {
       fecha_ingreso: new Date(),
     }
 
-    this.recursoService.editarRecurso(this.recurso().id_uta,recurso).subscribe({
+    this.recursoService.editarRecurso(this.recurso().id_dici,recurso).subscribe({
       next: () => {
         this.toastrService.success('Recurso editado con éxito', 'Éxito',{ positionClass: 'toast-bottom-center'});
       },

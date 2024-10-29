@@ -9,13 +9,13 @@ export const routes: Routes = [
       { path: 'prestamos/regular/:id_categoria', loadComponent: () => 
         import('./features/prestamos/regular/pages/seleccionar-recurso/seleccionar-recurso.component').
         then(c => c.SeleccionarRecursoComponent)},
-      { path: 'prestamos/regular/:id_categoria/:id_uta', loadComponent: () => 
+      { path: 'prestamos/regular/:id_categoria/:id_dici', loadComponent: () => 
         import('./features/prestamos/regular/pages/seleccionar-estudiante/seleccionar-estudiante.component').
         then(c => c.SeleccionarEstudianteComponent)},
-      { path: 'prestamos/regular/:id_categoria/:id_uta/metodo-qr', loadComponent: () => 
+      { path: 'prestamos/regular/:id_categoria/:id_dici/metodo-qr', loadComponent: () => 
         import('./features/prestamos/regular/pages/metodo-qr/metodo-qr.component').
         then(c => c.MetodoQrComponent)},
-      { path: 'prestamos/regular/:id_categoria/:id_uta/:rut', loadComponent: () => 
+      { path: 'prestamos/regular/:id_categoria/:id_dici/:rut', loadComponent: () => 
         import('./features/prestamos/regular/pages/confirmar-prestamo/confirmar-prestamo.component').
         then(c => c.ConfirmarPrestamoComponent)},
       { path: 'inventario/recursos', loadComponent: () => 
@@ -36,9 +36,16 @@ export const routes: Routes = [
       { path: 'inventario/categorias/editar-categoria/:id', loadComponent: () => 
         import('./features/inventario/categorias/pages/editar-categoria/editar-categoria.component').
         then(c => c.EditarCategoriaComponent)},
-      { path: 'usuarios/', loadComponent: () => 
-        import('./features/inventario/categorias/pages/editar-categoria/editar-categoria.component').
-        then(c => c.EditarCategoriaComponent)},
+      { path: 'usuarios', loadComponent: () => 
+        import('./features/usuarios/pages/gestion-usuarios/gestion-usuarios.component').
+        then(c => c.GestionUsuariosComponent)},
+      { path: 'usuarios/crear-usuario', loadComponent: () => 
+        import('./features/usuarios/pages/crear-usuario/crear-usuario.component').
+        then(c => c.CrearUsuarioComponent)},
+      { path: 'usuarios/editar-usuario/:id', loadComponent: () => 
+        import('./features/usuarios/pages/editar-usuario/editar-usuario.component').
+        then(c => c.EditarUsuarioComponent)},
+      
     ]
   },
   { path: 'login', loadComponent: () => 
