@@ -6,6 +6,7 @@ import { CategoriasService } from '../../../inventario/categorias/services/categ
 import { RecursosService } from '../../../inventario/recursos/services/recursos.service';
 import { CrearUsuario, UsuariosResponse } from '../../interfaces/usuarios.interface';
 import { UsuariosService } from '../../services/usuarios.service';
+import { Router } from '@angular/router';
 
 export enum Roles {
   ADMIN = 'ADMIN',
@@ -25,6 +26,7 @@ export class CrearUsuarioComponent {
   private formGroup = inject(FormBuilder);
   private layoutService = inject(LayoutService);
   private usuarioService = inject(UsuariosService);
+  private router = inject(Router);
 
   public isMobile = computed(() => this.layoutService.isMobile());
 
@@ -38,6 +40,8 @@ export class CrearUsuarioComponent {
     rol: ['', Validators.required],
     password: ['', Validators.required],
   });
+
+  public loadingCrearUsuario = signal(false);
 
   crearUsuario(){
     console.log('boton crear usuario');
@@ -55,12 +59,14 @@ export class CrearUsuarioComponent {
       rol: this.fromCrearUsuario.get('rol')?.value!,
       password: this.fromCrearUsuario.get('password')?.value!,
     };
-
+    this.loadingCrearUsuario.set(true);
     this.usuarioService.crearUsuario(usuario).subscribe({
       next: () => {
+        this.router.navigate(['/usuarios']);
         this.toastrService.success('Usuario creado correctamente', 'Exito', {positionClass: 'toast-bottom-center'});
       },
       error: () => {
+        this.loadingCrearUsuario.set(false);
         this.toastrService.error('Error al crear el usuario', 'Error', {positionClass: 'toast-bottom-center'});
       }
     });

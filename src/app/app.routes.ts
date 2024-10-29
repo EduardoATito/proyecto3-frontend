@@ -18,6 +18,9 @@ export const routes: Routes = [
       { path: 'prestamos/regular/:id_categoria/:id_dici/:rut', loadComponent: () => 
         import('./features/prestamos/regular/pages/confirmar-prestamo/confirmar-prestamo.component').
         then(c => c.ConfirmarPrestamoComponent)},
+      { path: 'prestamos/seguimiento', loadComponent: () => 
+        import('./features/prestamos/seguimiento/pages/seguimiento-prestamos/seguimiento-prestamos.component').
+        then(c => c.SeguimientoPrestamosComponent)},
       { path: 'inventario/recursos', loadComponent: () => 
         import('./features/inventario/recursos/pages/gestion-recursos/gestion-recursos.component').
         then(c => c.GestionRecursosComponent)},
@@ -36,6 +39,9 @@ export const routes: Routes = [
       { path: 'inventario/categorias/editar-categoria/:id', loadComponent: () => 
         import('./features/inventario/categorias/pages/editar-categoria/editar-categoria.component').
         then(c => c.EditarCategoriaComponent)},
+      { path: 'penalizaciones', loadComponent: () => 
+        import('./features/penalizaciones/pages/gestion-penalizaciones/gestion-penalizaciones.component').
+        then(c => c.GestionPenalizacionesComponent)},
       { path: 'usuarios', loadComponent: () => 
         import('./features/usuarios/pages/gestion-usuarios/gestion-usuarios.component').
         then(c => c.GestionUsuariosComponent)},

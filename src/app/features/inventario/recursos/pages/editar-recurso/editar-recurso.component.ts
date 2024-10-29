@@ -42,6 +42,8 @@ export class EditarRecursoComponent {
   public recurso = computed(() => this.recursoState().recurso);
   public loading = computed(() => this.recursoState().loading);
 
+  public loadingEditarRecurso = signal(false);
+
   public fromEditarRecurso = this.formGroup.group({
     id_dici: ['', [Validators.required]],
     marca: ['', Validators.required],
@@ -99,11 +101,15 @@ export class EditarRecursoComponent {
       fecha_ingreso: new Date(),
     }
 
+    this.loadingEditarRecurso.set(true);
+
     this.recursoService.editarRecurso(this.recurso().id_dici,recurso).subscribe({
       next: () => {
+        this.router.navigate(['/inventario/recursos']);
         this.toastrService.success('Recurso editado con éxito', 'Éxito',{ positionClass: 'toast-bottom-center'});
       },
       error: (res) => {
+        this.loadingEditarRecurso.set(false);
         this.toastrService.error(res.error.message, 'Error',{ positionClass: 'toast-bottom-center'});
       }
     });

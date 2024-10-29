@@ -49,6 +49,8 @@ export class EditarUsuarioComponent implements OnInit {
     password: ['', Validators.required],
   });
 
+  public loadingEditarUsuario = signal(false);
+
   ngOnInit(): void {
     this.setUsuarioById();
   }
@@ -81,15 +83,14 @@ export class EditarUsuarioComponent implements OnInit {
       rol: this.fromEditarUsuario.value.rol!,
       password: this.fromEditarUsuario.value.password!,
     }
-
-    console.log(userEdited);
-    console.log(this.usuario().id_usuario);
+    this.loadingEditarUsuario.set(true);
     this.usuarioService.editarUsuario(this.usuario().id_usuario,userEdited).subscribe({
       next: () => {
-        this.toastrService.success('Usuario editado correctamente', 'Exito', {positionClass: 'toast-bottom-center'});
         this.router.navigate(['/usuarios']);
+        this.toastrService.success('Usuario editado correctamente', 'Exito', {positionClass: 'toast-bottom-center'});
       },
       error: () => {
+        this.loadingEditarUsuario.set(false);
         this.toastrService.error('Ocurrio un error al editar el usuario','Error',{positionClass: 'toast-bottom-center'});
       }
     });

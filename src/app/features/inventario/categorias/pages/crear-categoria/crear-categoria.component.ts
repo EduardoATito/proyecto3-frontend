@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LayoutService } from '../../../../../core/layout/layout.service';
 import { CategoriasService } from '../../services/categorias.service';
@@ -20,6 +20,8 @@ export class CrearCategoriaComponent {
   private toastrService = inject(ToastrService);
   private router = inject(Router);
 
+  public loadingCrearCategoria = signal(false);
+
   public isMobile = computed(() => this.layoutService.isMobile());
 
   public formCrearCategoria = this.formBuilder.group({
@@ -38,12 +40,13 @@ export class CrearCategoriaComponent {
       fecha_creacion: new Date(),
     };
 
-
+    this.loadingCrearCategoria.set(true);
     this.categoriasService.crearCategoria(categoria).subscribe({
       next: () => {
         this.router.navigate(['/inventario/categorias']);
         this.toastrService.success('Categoria creada con exito', 'Exito', {positionClass: 'toast-bottom-center'});
       },error: (err) => {
+        this.loadingCrearCategoria.set(false);
         this.toastrService.error('Error al crear la categoria', 'Error', {positionClass: 'toast-bottom-center'});
       }
     });

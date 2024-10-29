@@ -1,0 +1,70 @@
+@if(loading()){
+  <app-spinner></app-spinner>
+}
+@else{
+  <div>
+    <div  class="mb-5 text-hazy-sky-900">
+      <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Seguimiento de prestamos.</h1>
+    </div>
+    <div class="relative overflow-x-auto shadow-md rounded-md">
+      <table class="w-full text-sm text-left">
+          <thead class="text-sm uppercase">
+            <tr class="bg-hazy-sky-900 text-hazy-sky-50">
+              <th class="p-4">
+                <div class="flex items-center">
+                  <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-hazy-sky-400 rounded focus:ring-hazy-sky-500 focus:ring-2">
+                  <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                </div>
+              </th>
+              <th class="px-6 py-3">
+                  Id DICI
+              </th>
+              <th class="px-6 py-3">
+                  ID Usuario
+              </th>
+              <th class="px-6 py-3">
+                  Rut
+              </th>
+              <th class="px-6 py-3">
+                  Hora Inicio
+              </th>
+              <th class="px-6 py-3">
+                  Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(prestamosRegular of prestamosRegular(); track prestamosRegular.id_dici){
+              <tr class=" border-t  border-hazy-sky-700 text-black">
+                <td class="w-4 p-4">
+                  <div class="flex items-center">
+                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                  </div>
+                </td>
+                <td class="px-6 py-4 font-medium ">
+                  {{prestamosRegular.id_dici}}
+                </td>
+                <td class="px-6 py-4 ">
+                  {{prestamosRegular.id_usuario}}
+                </td>
+                <td class="px-6 py-4">
+                  {{prestamosRegular.rut}}
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex w-80">
+                  {{prestamosRegular.hora_inicio | date: 'HH:mm:ss'}}
+                  </div>
+                </td>
+                <td class="px-6 w-1/5 whitespace-nowrap">
+                  <button (click)="onDevolver(prestamosRegular.id_dici)" class="p-2 font-medium bg-hazy-sky-200 text-hazy-sky-900 rounded-lg transition hover:bg-hazy-sky-100">
+                    Devolver                           
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+      </table>
+    </div>
+  </div>
+}
