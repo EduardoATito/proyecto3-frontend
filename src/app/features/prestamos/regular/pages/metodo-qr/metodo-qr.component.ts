@@ -56,6 +56,7 @@ export class MetodoQrComponent {
         const id_categoria = this.activateRoute.snapshot.params['id_categoria'];
         const id_dici = this.activateRoute.snapshot.params['id_dici'];
         const rut_estudiante = scannedValue; 
+        
         this.router.navigate([`/prestamos/regular/${id_categoria}/${id_dici}/${rut_estudiante}`]);
       }
     });

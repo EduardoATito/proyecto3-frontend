@@ -4,7 +4,7 @@
 @else{
   <div>
     <div  class="mb-5 text-hazy-sky-900">
-      <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Seguimiento de prestamos.</h1>
+      <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Historial.</h1>
     </div>
     <div class="relative overflow-x-auto shadow-md rounded-md">
       <table class="w-full text-sm text-left">
@@ -26,13 +26,10 @@
                   Rut
               </th>
               <th class="px-6 py-3">
-                  Fecha de inicio
+                  Fecha de Inicio
               </th>
               <th class="px-6 py-3">
-                  Hora de inicio
-              </th>
-              <th class="px-6 py-3">
-                  Acciones
+                  Fecha Fin
               </th>
             </tr>
           </thead>
@@ -55,15 +52,10 @@
                   {{prestamosRegular.rut}}
                 </td>
                 <td class="px-6 py-4">
-                  {{prestamosRegular.hora_inicio | date: 'dd/MM/YYY'}}
+                  {{prestamosRegular.hora_inicio | date: 'dd/MM/YYY HH:mm:ss'}}
                 </td>
                 <td class="px-6 py-4">
-                  {{prestamosRegular.hora_inicio | date: 'HH:mm:ss'}}
-                </td>
-                <td class="px-6 w-1/5 whitespace-nowrap">
-                  <button (click)="onDevolver(prestamosRegular.id_prestamo)" class="p-2 font-medium bg-hazy-sky-200 text-hazy-sky-900 rounded-lg transition hover:bg-hazy-sky-100">
-                    Devolver                           
-                  </button>
+                  {{prestamosRegular.hora_fin| date: 'dd/MM/YYY HH:mm:ss'}}
                 </td>
               </tr>
             }

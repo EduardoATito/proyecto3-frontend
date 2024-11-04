@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { CrearPrestamoRegular } from '../../../regular/interfaces/prestamo-regular.interface';
+import { CrearPrestamoRegular, FinPrestamoDto, PrestamoRegularData } from '../../../regular/interfaces/prestamo-regular.interface';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { PrestamoRegularService } from '../../../regular/services/prestamo-regular.service';
 import { DatePipe } from '@angular/common';
@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 export class SeguimientoPrestamosComponent implements OnInit{
   
   private prestamosRegularService = inject(PrestamoRegularService);
-  private prestamosRegularState = signal<{loading: boolean, prestamos: CrearPrestamoRegular[]}>({loading: true, prestamos: []});
+  private prestamosRegularState = signal<{loading: boolean, prestamos: PrestamoRegularData[]}>({loading: true, prestamos: []});
   public prestamosRegular = computed(() => this.prestamosRegularState().prestamos);
   public loading = computed(() => this.prestamosRegularState().loading);
 
@@ -22,12 +22,20 @@ export class SeguimientoPrestamosComponent implements OnInit{
   ngOnInit(): void {
     this.setAllPrestamosregular();
   }
-  onDevolver(id_dici:string){
+  onDevolver(id_prestamos:number){
 
+    const finPrestamo : FinPrestamoDto = {
+      id_prestamo: id_prestamos,
+      fecha_fin: new Date()
+    }
+
+    this.prestamosRegularService.devolverPrestamoRegular(finPrestamo).subscribe(() => {
+      this.setAllPrestamosregular()
+    });
   }
 
   setAllPrestamosregular(){
-    this.prestamosRegularService.getAllPrestamosRegular().subscribe((prestamos) => {
+    this.prestamosRegularService.getAllPrestamosRetugularActivos().subscribe((prestamos) => {
       this.prestamosRegularState.set({loading: false, prestamos})
     });
   }

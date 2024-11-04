@@ -68,7 +68,7 @@ export class ConfirmarPrestamoComponent {
       rut: this.estudiante()?.rut ?? '',
       id_dici: this.recurso()?.id_dici ?? '',
       hora_inicio: new Date().toISOString(),
-      id_usuario: 4, //aca deberia ir el id del usuario logeado
+      id_usuario: 5, //aca deberia ir el id del usuario logeado
     }
     console.log(prestamoRegular);
     this.prestamoService.crearPrestamoRegular(prestamoRegular).subscribe({

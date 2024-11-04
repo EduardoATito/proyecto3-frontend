@@ -47,6 +47,7 @@ export class EditarRecursoComponent {
   public fromEditarRecurso = this.formGroup.group({
     id_dici: ['', [Validators.required]],
     marca: ['', Validators.required],
+    nombre: ['', Validators.required],
     modelo: ['', Validators.required],
     ubicacion: ['', Validators.required],
     categoria: ['', Validators.required],
@@ -94,6 +95,7 @@ export class EditarRecursoComponent {
     const recurso : any = {
       id_dici: this.fromEditarRecurso.get('id_dici')?.value!,
       marca: this.fromEditarRecurso.get('marca')?.value!,
+      nombre: this.fromEditarRecurso.get('nombre')?.value!,
       modelo: this.fromEditarRecurso.get('modelo')?.value!,
       ubicacion: this.fromEditarRecurso.get('ubicacion')?.value!,
       id_categoria: +this.fromEditarRecurso.get('categoria')?.value!,

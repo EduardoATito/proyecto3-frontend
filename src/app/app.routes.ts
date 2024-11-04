@@ -21,6 +21,9 @@ export const routes: Routes = [
       { path: 'prestamos/seguimiento', loadComponent: () => 
         import('./features/prestamos/seguimiento/pages/seguimiento-prestamos/seguimiento-prestamos.component').
         then(c => c.SeguimientoPrestamosComponent)},
+      { path: 'prestamos/historial', loadComponent: () => 
+        import('./features/prestamos/historial/pages/historial/historial.component').
+        then(c => c.HistorialComponent)},  
       { path: 'inventario/recursos', loadComponent: () => 
         import('./features/inventario/recursos/pages/gestion-recursos/gestion-recursos.component').
         then(c => c.GestionRecursosComponent)},
