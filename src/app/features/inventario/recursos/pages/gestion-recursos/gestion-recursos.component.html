@@ -8,8 +8,20 @@
     <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Gestion de recursos</h1>
   </div>
   <div class="flex flex-row mb-4 w-full justify-between">
-    <input class="bg-blue-sky max-w-44 text-hazy-sky-800 focus:outline-none border rounded-lg p-2 focus:border-hazy-sky-600"
-    placeholder="Buscar ">
+    <div class="relative mt-1">
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none" >
+        <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+      </div>
+        <input 
+        class="bg-blue-sky text-hazy-sky-800 focus:outline-none border-2 border-hazy-sky-200 text-sm rounded-lg p-2 ps-10 focus:border-hazy-sky-700"
+        [ngClass]="{'w-80': !isMobile(), 'w-40': isMobile()}"
+        placeholder="Buscar" 
+        #searchQuery
+        (input)="onSearchUpdated(searchQuery.value)">
+
+    </div>
     <button (click)="crearRecurso()" class="bg-hazy-sky-200 p-2 px-5 rounded-md text-hazy-sky-950 font-medium hover:bg-great-blue-100 transition">Crear Recurso</button>
   </div>
   <div class="relative overflow-x-auto shadow-md rounded-md">

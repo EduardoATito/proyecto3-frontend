@@ -14,17 +14,25 @@
   [class]="isMobile()?'bg-hazy-sky-900 text-hazy-sky-50':'bg-white text-hazy-sky-900'"
   >
   <div class="flex w-full"
-  [class]="isMobile() ? 'justify-between':'justify-end'">
-    <button [class]="isMobile()?'block':'hidden'" (click)="collapsedEmit()">
-      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-      </svg>
-    </button>
+  [class]="isMobile() ? 'justify-between':'justify-between'">
+    <div [class]="isMobile()?'hidden':'block'" class="flex items-center justify-center">
+      <h1 class="text-xl font-bold text-hazy-sky-900">Pañol - Lab</h1>
+    </div>
+    <div class="flex flex-row">
+      <button [class]="isMobile()?'block':'hidden'" (click)="collapsedEmit()">
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+        </svg>
+      </button>
+      <div [class]="isMobile()?'block':'hidden'" class="flex items-center justify-center">
+        <h1 class="ms-3 text-xl font-bold text-hazy-sky-100">Pañol - Lab</h1>
+      </div>
+    </div>
     <div class="relative" #menu>
       <button (click)="dropMenu()" class="flex flex-row items-center justify-center gap-3 ">
         <div class="flex flex-col">
-          <span class="font-semibold">Humberto Urrutia</span>
-          <span class="text-sm ">ADMIN</span>
+          <span class="font-semibold">{{userProfile().user}}</span>
+          <span class="text-sm ">{{userProfile().rol}}</span>
         </div>
         <div class="">
           <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -35,9 +43,9 @@
       @if(isDropMenu()){
         <div class="absolute mt-2.5 rounded-md shadow-md w-36  right-0"
         [class]="isMobile() ? 'bg-hazy-sky-900':'bg-white'">
-          <button class="w-full p-2 transition" 
+          <button (click)="profile()" class="w-full p-2 transition" type="button"
           [class]="isMobile()?'hover:bg-hazy-sky-800':'hover:bg-hazy-sky-100'">Perfil</button>
-          <button class="w-full p-2 transition"
+          <button (click)="logout()" class="w-full p-2 transition"
           [class]="isMobile()?'hover:bg-hazy-sky-800':'hover:bg-hazy-sky-100'">Cerrar sesion</button>
         </div>
       }

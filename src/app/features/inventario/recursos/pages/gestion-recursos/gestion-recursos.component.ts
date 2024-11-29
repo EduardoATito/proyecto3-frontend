@@ -6,11 +6,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EliminarRecursoComponent } from '../eliminar-recurso/eliminar-recurso.component';
+import { LayoutService } from '../../../../../core/layout/layout.service';
+import { NgClass } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-gestion-recursos',
   standalone: true,
-  imports: [SpinnerComponent],
+  imports: [SpinnerComponent, NgClass, FormsModule, ReactiveFormsModule],
   templateUrl: './gestion-recursos.component.html',
   styleUrl: './gestion-recursos.component.css',
   animations: [
@@ -28,8 +31,15 @@ export class GestionRecursosComponent implements OnInit {
   private recursosService = inject(RecursosService);
   private recursosState = signal<{loading: boolean, recursos: AllRecursosReponse[]}>({loading: true, recursos: []});
   private dialog = inject(MatDialog);
-
-  public recursos = computed(() => this.recursosState().recursos);
+  private layout = inject(LayoutService);
+  
+  public isMobile = computed(() => this.layout.isMobile());
+  public search = signal<string>('');
+  public recursos = computed(() => {
+    const sq = this.search(); 
+    return this.recursosState().recursos.filter((recurso) => recurso.nombre.toLowerCase().includes(sq.toLowerCase()));
+    }
+  );
   public isLoading = computed(() => this.recursosState().loading);
   
   
@@ -38,9 +48,13 @@ export class GestionRecursosComponent implements OnInit {
   }
 
   getAllRecursos(){
+    this.recursosState.set({loading: true, recursos: []});
     this.recursosService.getAllRecursos().subscribe((res) => {
       this.recursosState.set({loading: false, recursos: res});
     });
+  }
+  onSearchUpdated(sq: string){
+    this.search.set(sq);
   }
 
   crearRecurso(){
@@ -51,16 +65,18 @@ export class GestionRecursosComponent implements OnInit {
   }
 
   opendModalEliminarRecurso(id_dici: string){
-    this.dialog.open(EliminarRecursoComponent, {
+    const dialogRef =  this.dialog.open(EliminarRecursoComponent, {
       width: '600px',
       enterAnimationDuration: 200,
       exitAnimationDuration: 200,
       data: {id_dici},
       position: {top: '300px'}
     });
-    this.dialog.afterAllClosed.subscribe(() => {
-      this.ngOnInit();
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res === 'eliminado') this.getAllRecursos();
     });
   }
+
   verRecurso(){}
 }

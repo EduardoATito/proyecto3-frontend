@@ -44,12 +44,6 @@
         [class]="hasRequiredError('correo')? 'border-red-600':'border-hazy-sky-600'"/>
         <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('correo')? 'visible':'invisible'">Campo requerido.</span>
       </div>
-      <div class="flex flex-col">
-        <label class="mb-2 font-medium">Contraseña</label>
-        <input formControlName="password" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
-        [class]="hasRequiredError('password')? 'border-red-600':'border-hazy-sky-600'"/>
-        <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('password')? 'visible':'invisible'">Campo requerido.</span>
-      </div>
     </form>
     <div class="flex justify-end gap-5 font-medium">
       <button class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>

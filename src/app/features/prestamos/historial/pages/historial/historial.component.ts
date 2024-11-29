@@ -3,13 +3,23 @@ import { PrestamoRegularService } from '../../../regular/services/prestamo-regul
 import { PrestamoRegularData } from '../../../regular/interfaces/prestamo-regular.interface';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { DatePipe } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-historial',
   standalone: true,
   imports: [SpinnerComponent, DatePipe],
   templateUrl: './historial.component.html',
-  styleUrl: './historial.component.css'
+  styleUrl: './historial.component.css',
+  animations: [
+    trigger('notLoading', [
+      transition(':enter', [
+        style({ opacity: 0}),
+        animate('300ms ease-out', style({ opacity: 1})) 
+      ]),
+    ])
+  ]
+  
 })
 export class HistorialComponent {
 

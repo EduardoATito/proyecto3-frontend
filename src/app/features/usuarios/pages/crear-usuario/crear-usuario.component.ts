@@ -38,7 +38,6 @@ export class CrearUsuarioComponent {
     correo: ['', Validators.required],
     rut: ['', Validators.required],
     rol: ['', Validators.required],
-    password: ['', Validators.required],
   });
 
   public loadingCrearUsuario = signal(false);
@@ -57,7 +56,6 @@ export class CrearUsuarioComponent {
       correo: this.fromCrearUsuario.get('correo')?.value!,
       rut: this.fromCrearUsuario.get('rut')?.value!,
       rol: this.fromCrearUsuario.get('rol')?.value!,
-      password: this.fromCrearUsuario.get('password')?.value!,
     };
     this.loadingCrearUsuario.set(true);
     this.usuarioService.crearUsuario(usuario).subscribe({
@@ -65,7 +63,8 @@ export class CrearUsuarioComponent {
         this.router.navigate(['/usuarios']);
         this.toastrService.success('Usuario creado correctamente', 'Exito', {positionClass: 'toast-bottom-center'});
       },
-      error: () => {
+      error: (e) => {
+        console.log(e);
         this.loadingCrearUsuario.set(false);
         this.toastrService.error('Error al crear el usuario', 'Error', {positionClass: 'toast-bottom-center'});
       }

@@ -1,1 +1,84 @@
-<p>gestion-penalizaciones works!</p>
+@if(loading()){
+  <app-spinner></app-spinner>
+}@else {
+  <div 
+@notLoading
+>
+  <div>
+    <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Gestion de Penalizaciones</h1>
+  </div>
+  <div class="flex flex-row mb-4 w-full justify-between">
+    <input class="bg-blue-sky max-w-44 text-hazy-sky-800 focus:outline-none border rounded-lg p-2 focus:border-hazy-sky-600"
+    placeholder="Buscar ">
+    <button (click)="crearPenalizacion()" 
+    class="bg-hazy-sky-200 p-2 px-5 rounded-md text-hazy-sky-950 font-medium hover:bg-great-blue-100 transition">
+      Crear Penalizacion
+    </button>
+  </div>
+  <div class="relative overflow-x-auto shadow-md rounded-md">
+    <table class="w-full text-sm text-left">
+        <thead class="text-sm uppercase">
+          <tr class="bg-hazy-sky-900 text-hazy-sky-50">
+            <th class="px-6 py-3">
+              ID usuario
+            </th>
+            <th class="px-6 py-3">
+              Grado
+            </th>
+            <th class="px-6 py-3">
+              RUT Estudiante
+            </th>
+            <th class="px-6 py-3">
+              Fecha Inicio
+            </th>
+            <th class="px-6 py-3">
+              Fecha Fin
+            </th>
+            <th class="px-6 py-3">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(penalizacion of penalizaciones(); track penalizacion.id_sanciones){
+            <tr class=" border-t  border-hazy-sky-700 text-black">
+              <td class="px-6 py-4 font-medium ">
+                {{penalizacion.id_usuario}}
+              </td>
+              <td class="px-6 py-4 ">
+                {{penalizacion.grado}}
+              </td>
+              <td class="px-6 py-4">
+                {{penalizacion.rut_estudiante}}
+              </td>
+              <td class="px-6 py-4">
+                {{penalizacion.fecha_inicio}}
+              </td>
+              <td class="px-6 py-4">
+                {{penalizacion.fecha_final}}
+              </td>
+              <td class="px-6 w-1/5 whitespace-nowrap">
+                <button  class="p-1 mr-2 hover:bg-hazy-sky-100 rounded-xl transition">
+                  <svg class="w-6 h-6 text-hazy-sky-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                    <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                  </svg>                              
+                </button>
+                <button  class="p-1 mr-2 hover:bg-yellow-100 rounded-xl transition">
+                  <svg class="w-6 h-6 text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                  </svg>                
+                </button>
+                <button  class="p-1 mr-2 hover:bg-red-100 rounded-xl transition">
+                  <svg class="w-6 h-6 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                  </svg>                             
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+    </table>
+  </div>
+</div>
+}

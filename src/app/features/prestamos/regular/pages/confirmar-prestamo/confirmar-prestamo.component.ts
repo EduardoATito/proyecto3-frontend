@@ -1,8 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { LayoutService } from '../../../../../core/layout/layout.service';
-import { EstudiantesService } from '../../services/estudiantes.service';
+import { EstudiantesService } from '../../../../estudiantes/services/estudiantes.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Estudiante } from '../../interfaces/estudiante.interface';
+import { Estudiante } from '../../../../estudiantes/interfaces/estudiante.interface';
 import { RecursosService } from '../../../../inventario/recursos/services/recursos.service';
 import { AllRecursosReponse } from '../../../../inventario/recursos/interfaces/recursos.interface';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';

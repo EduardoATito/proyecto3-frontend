@@ -3,13 +3,22 @@ import { CrearPrestamoRegular, FinPrestamoDto, PrestamoRegularData } from '../..
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { PrestamoRegularService } from '../../../regular/services/prestamo-regular.service';
 import { DatePipe } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-seguimiento-prestamos',
   standalone: true,
   imports: [SpinnerComponent, DatePipe],
   templateUrl: './seguimiento-prestamos.component.html',
-  styleUrl: './seguimiento-prestamos.component.css'
+  styleUrl: './seguimiento-prestamos.component.css',
+  animations: [
+    trigger('notLoading', [
+      transition(':enter', [
+        style({ opacity: 0}),
+        animate('300ms ease-out', style({ opacity: 1})) 
+      ]),
+    ])
+  ]
 })
 export class SeguimientoPrestamosComponent implements OnInit{
   

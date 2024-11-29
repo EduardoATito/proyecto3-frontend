@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environments.development';
 import { Observable } from 'rxjs';
-import { CrearUsuario } from '../interfaces/usuarios.interface';
+import { ChangePassword, CrearUsuario } from '../interfaces/usuarios.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,9 @@ export class UsuariosService {
 
   eliminarUsuario(rut: string) : Observable<any> {
     return this.http.delete(`${this.BASE_URL}/usuarios/${rut}`);
+  }
+
+  cambiarPassword(cambiarPasswordBody : ChangePassword) : Observable<any> {
+    return this.http.patch(`${this.BASE_URL}/usuarios/change-password`, cambiarPasswordBody);
   }
 }

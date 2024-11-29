@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../../../environments/environments.development';
+import { environment } from '../../../../environments/environments.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -17,6 +17,12 @@ export class EstudiantesService {
 
   getEstudianteByRut(rut: string) : Observable<any> {
     return this.httpClient.get(`${this.BASE_URL}/estudiantes/${rut}`);
+  }
+
+  enviarArchivoEstudiantes(file: File) : Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post(`${this.BASE_URL}/estudiantes`, formData, {});
   }
 
 }

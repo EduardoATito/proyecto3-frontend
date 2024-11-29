@@ -7,7 +7,7 @@ import { LayoutService } from '../../../../core/layout/layout.service';
 import { Roles } from '../crear-usuario/crear-usuario.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
-import { CrearUsuario } from '../../interfaces/usuarios.interface';
+import { CrearUsuario, EditarUsuario } from '../../interfaces/usuarios.interface';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -46,7 +46,6 @@ export class EditarUsuarioComponent implements OnInit {
     correo: ['', Validators.required],
     rut: ['', Validators.required],
     rol: ['', Validators.required],
-    password: ['', Validators.required],
   });
 
   public loadingEditarUsuario = signal(false);
@@ -75,13 +74,12 @@ export class EditarUsuarioComponent implements OnInit {
       return;
     }
 
-    const userEdited : CrearUsuario = {
+    const userEdited : EditarUsuario = {
       nombre: this.fromEditarUsuario.value.nombre!,
       usuario: this.fromEditarUsuario.value.usuario!,
       correo: this.fromEditarUsuario.value.correo!,
       rut: this.fromEditarUsuario.value.rut!,
       rol: this.fromEditarUsuario.value.rol!,
-      password: this.fromEditarUsuario.value.password!,
     }
     this.loadingEditarUsuario.set(true);
     this.usuarioService.editarUsuario(this.usuario().id_usuario,userEdited).subscribe({
