@@ -36,6 +36,7 @@ export class GestionEstudiantesComponent implements OnInit{
     this.estudiantesState.set({loading: true, estudiantes: []});
     this.estudiantesService.getAllEstudiantes().subscribe({
       next: (response) => {
+        console.log('Estudiantes:', response);
         this.estudiantesState.set({loading: false, estudiantes: response});
       },
       error: (error) => {

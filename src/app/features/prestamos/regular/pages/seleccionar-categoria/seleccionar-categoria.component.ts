@@ -46,6 +46,6 @@ export class SeleccionarCategoriaComponent implements OnInit {
   }
 
   onDevolver(id_categoria: number){
-    this.router.navigate(['/prestamos/devolver']);
+    this.router.navigate([`/prestamos/devolver/${id_categoria}`]);
   }
 }

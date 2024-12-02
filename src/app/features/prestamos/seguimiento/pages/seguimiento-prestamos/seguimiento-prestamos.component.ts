@@ -4,6 +4,7 @@ import { SpinnerComponent } from '../../../../../shared/components/spinner/spinn
 import { PrestamoRegularService } from '../../../regular/services/prestamo-regular.service';
 import { DatePipe } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-seguimiento-prestamos',
@@ -24,6 +25,7 @@ export class SeguimientoPrestamosComponent implements OnInit{
   
   private prestamosRegularService = inject(PrestamoRegularService);
   private prestamosRegularState = signal<{loading: boolean, prestamos: PrestamoRegularData[]}>({loading: true, prestamos: []});
+  private toastrService = inject(ToastrService);
   public prestamosRegular = computed(() => this.prestamosRegularState().prestamos);
   public loading = computed(() => this.prestamosRegularState().loading);
 
@@ -38,8 +40,17 @@ export class SeguimientoPrestamosComponent implements OnInit{
       fecha_fin: new Date()
     }
 
-    this.prestamosRegularService.devolverPrestamoRegular(finPrestamo).subscribe(() => {
-      this.setAllPrestamosregular()
+    console.log(finPrestamo);
+
+    this.prestamosRegularService.devolverPrestamoRegular(finPrestamo).subscribe({
+      next: (r) => {
+        console.log(r);
+        this.setAllPrestamosregular();
+      },
+      error: (err) => {
+        this.toastrService.error(err.error.message, 'Error', {positionClass: 'toast-bottom-center'});
+        console.log(err);
+      }
     });
   }
 

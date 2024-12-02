@@ -11,6 +11,7 @@ import { CrearPrestamoRegular } from '../../interfaces/prestamo-regular.interfac
 import { ToastrService } from 'ngx-toastr';
 import { UsuariosService } from '../../../../usuarios/services/usuarios.service';
 import { UsuariosResponse } from '../../../../usuarios/interfaces/usuarios.interface';
+import  {JWTTokenService} from '../../../../../core/auth/services/jwttoken.service';
 
 @Component({
   selector: 'app-confirmar-prestamo',
@@ -27,6 +28,7 @@ export class ConfirmarPrestamoComponent {
   private activateRouter = inject(ActivatedRoute);
   private prestamoService = inject(PrestamoRegularService);
   private toastervice = inject(ToastrService);
+  private jwtService = inject(JWTTokenService);
   private router = inject(Router);
   private usuarioService = inject(UsuariosService);
 
@@ -64,11 +66,13 @@ export class ConfirmarPrestamoComponent {
 
   confirmarPrestamo() {
 
+    const id_usuario = this.jwtService.getIdUsuario();
+
     const prestamoRegular : CrearPrestamoRegular = {
       rut: this.estudiante()?.rut ?? '',
       id_dici: this.recurso()?.id_dici ?? '',
       hora_inicio: new Date().toISOString(),
-      id_usuario: 5, //aca deberia ir el id del usuario logeado
+      id_usuario: id_usuario!, 
     }
     console.log(prestamoRegular);
     this.prestamoService.crearPrestamoRegular(prestamoRegular).subscribe({
