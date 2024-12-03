@@ -5,19 +5,18 @@ import { Chart, registerables, ChartConfiguration } from 'chart.js';
 import { animate, style, transition, trigger } from '@angular/animations';
 Chart.register(...registerables);
 @Component({
-  selector: 'app-inicio',
-  standalone: true,
-  imports: [SpinnerComponent],
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.5)'}),
-        animate('1000ms ease-out', style({ opacity: 1, transform: 'scale(1)'})) 
-      ]),
-    ])
-  ]
+    selector: 'app-inicio',
+    imports: [SpinnerComponent],
+    templateUrl: './inicio.component.html',
+    styleUrl: './inicio.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0, transform: 'scale(0.5)' }),
+                animate('1000ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+            ]),
+        ])
+    ]
 })
 export class InicioComponent implements AfterViewInit, OnInit {
   

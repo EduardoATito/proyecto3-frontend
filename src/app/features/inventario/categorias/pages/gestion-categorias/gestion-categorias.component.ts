@@ -10,19 +10,18 @@ import { EliminarCategoriaComponent } from '../eliminar-categoria/eliminar-categ
 
 
 @Component({
-  selector: 'app-gestion-categorias',
-  standalone: true,
-  imports: [DatePipe, SpinnerComponent],
-  templateUrl: './gestion-categorias.component.html',
-  styleUrl: './gestion-categorias.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-gestion-categorias',
+    imports: [DatePipe, SpinnerComponent],
+    templateUrl: './gestion-categorias.component.html',
+    styleUrl: './gestion-categorias.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class GestionCategoriasComponent implements OnInit {
 

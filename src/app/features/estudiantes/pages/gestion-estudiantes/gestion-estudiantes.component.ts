@@ -7,19 +7,18 @@ import { LayoutService } from '../../../../core/layout/layout.service';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-gestion-estudiantes',
-  standalone: true,
-  imports: [SpinnerComponent, NgClass],
-  templateUrl: './gestion-estudiantes.component.html',
-  styleUrl: './gestion-estudiantes.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-gestion-estudiantes',
+    imports: [SpinnerComponent, NgClass],
+    templateUrl: './gestion-estudiantes.component.html',
+    styleUrl: './gestion-estudiantes.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class GestionEstudiantesComponent implements OnInit{
 

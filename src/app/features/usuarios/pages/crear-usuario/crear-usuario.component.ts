@@ -14,11 +14,10 @@ export enum Roles {
 }
 
 @Component({
-  selector: 'app-crear-usuario',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './crear-usuario.component.html',
-  styleUrl: './crear-usuario.component.css'
+    selector: 'app-crear-usuario',
+    imports: [ReactiveFormsModule],
+    templateUrl: './crear-usuario.component.html',
+    styleUrl: './crear-usuario.component.css'
 })
 export class CrearUsuarioComponent {
 

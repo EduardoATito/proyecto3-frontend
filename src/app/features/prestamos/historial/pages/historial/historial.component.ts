@@ -11,22 +11,20 @@ import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/cor
 import { LayoutService } from '../../../../../core/layout/layout.service';
 
 @Component({
-  selector: 'app-historial',
-  standalone: true,
-  providers: [provideNativeDateAdapter(),
-  ],
-  imports: [SpinnerComponent, DatePipe, MatDatepickerModule, MatFormFieldModule, ReactiveFormsModule, NgClass],
-  templateUrl: './historial.component.html',
-  styleUrl: './historial.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
-  
+    selector: 'app-historial',
+    providers: [provideNativeDateAdapter(),
+    ],
+    imports: [SpinnerComponent, DatePipe, MatDatepickerModule, MatFormFieldModule, ReactiveFormsModule, NgClass],
+    templateUrl: './historial.component.html',
+    styleUrl: './historial.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class HistorialComponent {
 

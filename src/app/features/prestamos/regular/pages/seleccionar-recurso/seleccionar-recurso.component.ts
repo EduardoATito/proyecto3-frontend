@@ -5,11 +5,10 @@ import { AllRecursosReponse } from '../../../../inventario/recursos/interfaces/r
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 
 @Component({
-  selector: 'app-seleccionar-recurso',
-  standalone: true,
-  imports: [SpinnerComponent],
-  templateUrl: './seleccionar-recurso.component.html',
-  styleUrl: './seleccionar-recurso.component.css'
+    selector: 'app-seleccionar-recurso',
+    imports: [SpinnerComponent],
+    templateUrl: './seleccionar-recurso.component.html',
+    styleUrl: './seleccionar-recurso.component.css'
 })
 export class SeleccionarRecursoComponent implements OnInit {
   

@@ -7,19 +7,18 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-seguimiento-prestamos',
-  standalone: true,
-  imports: [SpinnerComponent, DatePipe],
-  templateUrl: './seguimiento-prestamos.component.html',
-  styleUrl: './seguimiento-prestamos.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-seguimiento-prestamos',
+    imports: [SpinnerComponent, DatePipe],
+    templateUrl: './seguimiento-prestamos.component.html',
+    styleUrl: './seguimiento-prestamos.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class SeguimientoPrestamosComponent implements OnInit{
   

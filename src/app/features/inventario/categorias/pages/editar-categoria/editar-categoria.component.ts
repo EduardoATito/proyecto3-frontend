@@ -10,19 +10,18 @@ import { SpinnerComponent } from '../../../../../shared/components/spinner/spinn
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-editar-categoria',
-  standalone: true,
-  imports: [ReactiveFormsModule, SpinnerComponent],
-  templateUrl: './editar-categoria.component.html',
-  styleUrl: './editar-categoria.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-editar-categoria',
+    imports: [ReactiveFormsModule, SpinnerComponent],
+    templateUrl: './editar-categoria.component.html',
+    styleUrl: './editar-categoria.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class EditarCategoriaComponent implements OnInit {
 

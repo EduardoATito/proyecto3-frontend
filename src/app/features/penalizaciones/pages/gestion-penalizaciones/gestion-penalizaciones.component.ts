@@ -7,19 +7,18 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-gestion-penalizaciones',
-  standalone: true,
-  imports: [SpinnerComponent , DatePipe],
-  templateUrl: './gestion-penalizaciones.component.html',
-  styleUrl: './gestion-penalizaciones.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-gestion-penalizaciones',
+    imports: [SpinnerComponent, DatePipe],
+    templateUrl: './gestion-penalizaciones.component.html',
+    styleUrl: './gestion-penalizaciones.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class GestionPenalizacionesComponent implements OnInit {
 

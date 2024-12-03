@@ -14,23 +14,22 @@ interface MenuItem {
 }
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive],
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
-  animations: [
-    trigger('expandMenu', [
-      transition(':enter', [
-        style({ height: '0px', overflow: 'hidden' }),
-        animate('200ms ease-in-out', style({ height: '*' })),
-      ]),
-      transition(':leave', [
-        style({ overflow: 'hidden' }),
-        animate('200ms ease-in-out', style({ height: '0px' }))
-      ])
-    ])
-  ]
+    selector: 'app-sidebar',
+    imports: [RouterLink, CommonModule, RouterLinkActive],
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.css'],
+    animations: [
+        trigger('expandMenu', [
+            transition(':enter', [
+                style({ height: '0px', overflow: 'hidden' }),
+                animate('200ms ease-in-out', style({ height: '*' })),
+            ]),
+            transition(':leave', [
+                style({ overflow: 'hidden' }),
+                animate('200ms ease-in-out', style({ height: '0px' }))
+            ])
+        ])
+    ]
 })
 export class SidebarComponent implements OnInit {
 

@@ -3,11 +3,10 @@ import { LayoutService } from '../../../../../core/layout/layout.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-seleccionar-estudiante',
-  standalone: true,
-  imports: [],
-  templateUrl: './seleccionar-estudiante.component.html',
-  styleUrl: './seleccionar-estudiante.component.css'
+    selector: 'app-seleccionar-estudiante',
+    imports: [],
+    templateUrl: './seleccionar-estudiante.component.html',
+    styleUrl: './seleccionar-estudiante.component.css'
 })
 export class SeleccionarEstudianteComponent {
 

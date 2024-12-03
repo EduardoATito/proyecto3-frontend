@@ -13,19 +13,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogChangePasswordComponent } from '../dialog-change-password/dialog-change-password.component';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [ReactiveFormsModule, SpinnerComponent],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-profile',
+    imports: [ReactiveFormsModule, SpinnerComponent],
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class ProfileComponent {
 

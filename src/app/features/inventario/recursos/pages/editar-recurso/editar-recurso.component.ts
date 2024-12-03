@@ -11,19 +11,18 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { delay } from 'rxjs';
 
 @Component({
-  selector: 'app-editar-recurso',
-  standalone: true,
-  imports: [ReactiveFormsModule, SpinnerComponent],
-  templateUrl: './editar-recurso.component.html',
-  styleUrl: './editar-recurso.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-editar-recurso',
+    imports: [ReactiveFormsModule, SpinnerComponent],
+    templateUrl: './editar-recurso.component.html',
+    styleUrl: './editar-recurso.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class EditarRecursoComponent {
 

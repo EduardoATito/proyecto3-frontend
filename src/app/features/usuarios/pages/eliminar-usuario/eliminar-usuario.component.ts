@@ -5,11 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-eliminar-usuario',
-  standalone: true,
-  imports: [],
-  templateUrl: './eliminar-usuario.component.html',
-  styleUrl: './eliminar-usuario.component.css'
+    selector: 'app-eliminar-usuario',
+    imports: [],
+    templateUrl: './eliminar-usuario.component.html',
+    styleUrl: './eliminar-usuario.component.css'
 })
 export class EliminarUsuarioComponent {
 

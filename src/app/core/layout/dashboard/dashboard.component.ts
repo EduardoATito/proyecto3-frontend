@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [SidebarComponent, NavbarComponent, CommonModule, RouterOutlet],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+    selector: 'app-dashboard',
+    imports: [SidebarComponent, NavbarComponent, CommonModule, RouterOutlet],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent{
 

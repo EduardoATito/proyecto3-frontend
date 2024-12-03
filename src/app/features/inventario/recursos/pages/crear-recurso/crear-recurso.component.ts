@@ -10,11 +10,10 @@ import { trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crear-recurso',
-  standalone: true,
-  imports: [ReactiveFormsModule, ToastrModule],
-  templateUrl: './crear-recurso.component.html',
-  styleUrl: './crear-recurso.component.css'
+    selector: 'app-crear-recurso',
+    imports: [ReactiveFormsModule, ToastrModule],
+    templateUrl: './crear-recurso.component.html',
+    styleUrl: './crear-recurso.component.css'
 })
 export class CrearRecursoComponent implements OnInit{
 

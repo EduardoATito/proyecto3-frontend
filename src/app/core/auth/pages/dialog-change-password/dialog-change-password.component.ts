@@ -6,11 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ChangePassword } from '../../../../features/usuarios/interfaces/usuarios.interface';
 
 @Component({
-  selector: 'app-dialog-change-password',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './dialog-change-password.component.html',
-  styleUrl: './dialog-change-password.component.css'
+    selector: 'app-dialog-change-password',
+    imports: [ReactiveFormsModule],
+    templateUrl: './dialog-change-password.component.html',
+    styleUrl: './dialog-change-password.component.css'
 })
 export class DialogChangePasswordComponent {
 

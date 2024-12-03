@@ -10,19 +10,18 @@ import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.
 import { CrearUsuario, EditarUsuario } from '../../interfaces/usuarios.interface';
 
 @Component({
-  selector: 'app-editar-usuario',
-  standalone: true,
-  imports: [ReactiveFormsModule, SpinnerComponent],
-  templateUrl: './editar-usuario.component.html',
-  styleUrl: './editar-usuario.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-editar-usuario',
+    imports: [ReactiveFormsModule, SpinnerComponent],
+    templateUrl: './editar-usuario.component.html',
+    styleUrl: './editar-usuario.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class EditarUsuarioComponent implements OnInit {
 

@@ -8,11 +8,10 @@ import { JWTTokenService } from '../../../../core/auth/services/jwttoken.service
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crear-penalizacion',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './crear-penalizacion.component.html',
-  styleUrl: './crear-penalizacion.component.css'
+    selector: 'app-crear-penalizacion',
+    imports: [ReactiveFormsModule],
+    templateUrl: './crear-penalizacion.component.html',
+    styleUrl: './crear-penalizacion.component.css'
 })
 export class CrearPenalizacionComponent {
 

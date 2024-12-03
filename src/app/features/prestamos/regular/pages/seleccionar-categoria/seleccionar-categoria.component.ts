@@ -7,19 +7,18 @@ import { delay } from 'rxjs';
 import { CategoriasResponse } from '../../../../inventario/categorias/interfaces/categorias.interface';
 
 @Component({
-  selector: 'app-seleccionar-categoria',
-  standalone: true,
-  imports: [],
-  templateUrl: './seleccionar-categoria.component.html',
-  styleUrl: './seleccionar-categoria.component.css',
-  animations: [
-    trigger('fadeInDiagonal', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-seleccionar-categoria',
+    imports: [],
+    templateUrl: './seleccionar-categoria.component.html',
+    styleUrl: './seleccionar-categoria.component.css',
+    animations: [
+        trigger('fadeInDiagonal', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class SeleccionarCategoriaComponent implements OnInit {
 

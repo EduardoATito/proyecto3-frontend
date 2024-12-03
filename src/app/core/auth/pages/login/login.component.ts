@@ -10,11 +10,10 @@ import { JWTTokenService } from '../../services/jwttoken.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [NgOptimizedImage, ReactiveFormsModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
 

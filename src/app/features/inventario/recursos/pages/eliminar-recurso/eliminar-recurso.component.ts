@@ -6,11 +6,10 @@ import { RecursosService } from '../../services/recursos.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-eliminar-recurso',
-  standalone: true,
-  imports: [],
-  templateUrl: './eliminar-recurso.component.html',
-  styleUrl: './eliminar-recurso.component.css'
+    selector: 'app-eliminar-recurso',
+    imports: [],
+    templateUrl: './eliminar-recurso.component.html',
+    styleUrl: './eliminar-recurso.component.css'
 })
 export class EliminarRecursoComponent {
 

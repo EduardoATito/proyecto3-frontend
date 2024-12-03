@@ -6,11 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crear-categoria',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './crear-categoria.component.html',
-  styleUrl: './crear-categoria.component.css'
+    selector: 'app-crear-categoria',
+    imports: [ReactiveFormsModule],
+    templateUrl: './crear-categoria.component.html',
+    styleUrl: './crear-categoria.component.css'
 })
 export class CrearCategoriaComponent {
 

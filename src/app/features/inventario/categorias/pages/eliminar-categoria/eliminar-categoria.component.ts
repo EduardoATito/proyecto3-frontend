@@ -5,11 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-eliminar-categoria',
-  standalone: true,
-  imports: [MatDialogActions, MatDialogClose, MatDialogContent],
-  templateUrl: './eliminar-categoria.component.html',
-  styleUrl: './eliminar-categoria.component.css'
+    selector: 'app-eliminar-categoria',
+    imports: [MatDialogActions, MatDialogClose, MatDialogContent],
+    templateUrl: './eliminar-categoria.component.html',
+    styleUrl: './eliminar-categoria.component.css'
 })
 export class EliminarCategoriaComponent {
 

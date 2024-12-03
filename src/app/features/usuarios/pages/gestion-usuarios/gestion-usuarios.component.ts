@@ -8,19 +8,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { EliminarUsuarioComponent } from '../eliminar-usuario/eliminar-usuario.component';
 
 @Component({
-  selector: 'app-gestion-usuarios',
-  standalone: true,
-  imports: [SpinnerComponent],
-  templateUrl: './gestion-usuarios.component.html',
-  styleUrl: './gestion-usuarios.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-gestion-usuarios',
+    imports: [SpinnerComponent],
+    templateUrl: './gestion-usuarios.component.html',
+    styleUrl: './gestion-usuarios.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class GestionUsuariosComponent implements OnInit {
 

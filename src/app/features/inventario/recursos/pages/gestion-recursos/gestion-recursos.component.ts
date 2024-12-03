@@ -11,19 +11,18 @@ import { NgClass } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-gestion-recursos',
-  standalone: true,
-  imports: [SpinnerComponent, NgClass, FormsModule, ReactiveFormsModule],
-  templateUrl: './gestion-recursos.component.html',
-  styleUrl: './gestion-recursos.component.css',
-  animations: [
-    trigger('notLoading', [
-      transition(':enter', [
-        style({ opacity: 0}),
-        animate('300ms ease-out', style({ opacity: 1})) 
-      ]),
-    ])
-  ]
+    selector: 'app-gestion-recursos',
+    imports: [SpinnerComponent, NgClass, FormsModule, ReactiveFormsModule],
+    templateUrl: './gestion-recursos.component.html',
+    styleUrl: './gestion-recursos.component.css',
+    animations: [
+        trigger('notLoading', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('300ms ease-out', style({ opacity: 1 }))
+            ]),
+        ])
+    ]
 })
 export class GestionRecursosComponent implements OnInit {
 

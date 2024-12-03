@@ -7,11 +7,10 @@ import { BehaviorSubject } from 'rxjs';
 LOAD_WASM().subscribe();
 
 @Component({
-  selector: 'app-metodo-qr',
-  standalone: true,
-  imports: [NgxScannerQrcodeModule],
-  templateUrl: './metodo-qr.component.html',
-  styleUrl: './metodo-qr.component.css'
+    selector: 'app-metodo-qr',
+    imports: [NgxScannerQrcodeModule],
+    templateUrl: './metodo-qr.component.html',
+    styleUrl: './metodo-qr.component.css'
 })
 export class MetodoQrComponent {
   

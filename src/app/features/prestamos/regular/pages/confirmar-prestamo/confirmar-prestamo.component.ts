@@ -14,11 +14,10 @@ import { UsuariosResponse } from '../../../../usuarios/interfaces/usuarios.inter
 import  {JWTTokenService} from '../../../../../core/auth/services/jwttoken.service';
 
 @Component({
-  selector: 'app-confirmar-prestamo',
-  standalone: true,
-  imports: [SpinnerComponent],
-  templateUrl: './confirmar-prestamo.component.html',
-  styleUrl: './confirmar-prestamo.component.css'
+    selector: 'app-confirmar-prestamo',
+    imports: [SpinnerComponent],
+    templateUrl: './confirmar-prestamo.component.html',
+    styleUrl: './confirmar-prestamo.component.css'
 })
 export class ConfirmarPrestamoComponent {
 
