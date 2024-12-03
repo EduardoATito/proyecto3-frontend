@@ -1,4 +1,4 @@
 export interface Login {
-  rut: string;
+  correo: string;
   password: string;
 }

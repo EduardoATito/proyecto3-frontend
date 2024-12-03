@@ -1,3 +1,5 @@
+import { CategoriasResponse } from "../../categorias/interfaces/categorias.interface";
+
 export interface AllRecursosReponse {
   marca: string;
   descripcion: string;
@@ -9,4 +11,5 @@ export interface AllRecursosReponse {
   id_dici: string;
   id_uta: string;
   ubicacion: string;
+  categoria: CategoriasResponse;
 }

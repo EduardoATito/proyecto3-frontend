@@ -24,7 +24,7 @@ export class UsuariosService {
   }
 
   editarUsuario(id_usuario: number, usuario: CrearUsuario) : Observable<any> {
-    return this.http.patch(`${this.BASE_URL}/usuarios/${id_usuario}`, usuario);
+    return this.http.patch(`${this.BASE_URL}/usuarios/actualizar-usuario/${id_usuario}`, usuario);
   }
 
   eliminarUsuario(rut: string) : Observable<any> {

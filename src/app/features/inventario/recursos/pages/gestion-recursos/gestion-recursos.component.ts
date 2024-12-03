@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, Renderer2, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursosService } from '../../services/recursos.service';
 import { AllRecursosReponse } from '../../interfaces/recursos.interface';
@@ -32,27 +32,52 @@ export class GestionRecursosComponent implements OnInit {
   private recursosState = signal<{loading: boolean, recursos: AllRecursosReponse[]}>({loading: true, recursos: []});
   private dialog = inject(MatDialog);
   private layout = inject(LayoutService);
+
   
+  @ViewChild('menu') menu!: ElementRef;
+
   public isMobile = computed(() => this.layout.isMobile());
+
+
+
+  public currentPage = signal<number>(1);
+  public totalPages : number[] = [];
+
   public search = signal<string>('');
   public recursos = computed(() => {
     const sq = this.search(); 
-    return this.recursosState().recursos.filter((recurso) => recurso.nombre.toLowerCase().includes(sq.toLowerCase()));
+    return this.recursosState().recursos.filter((recurso) => recurso.id_dici.toLowerCase().includes(sq.toLowerCase()));
     }
   );
+
   public isLoading = computed(() => this.recursosState().loading);
   
+
   
   ngOnInit(): void {
     this.getAllRecursos();
   }
 
+
   getAllRecursos(){
     this.recursosState.set({loading: true, recursos: []});
-    this.recursosService.getAllRecursos().subscribe((res) => {
-      this.recursosState.set({loading: false, recursos: res});
+    this.recursosService.getAllRecursos(1).subscribe((res) => {
+      this.totalPages = Array.from({length: res.totalPages}, (_, i) => i + 1);
+      this.recursosState.set({loading: false, recursos: res.data});
     });
   }
+
+  onPageChange(page : number){
+
+    this.search.set('');
+    if(page < 1 || page > this.totalPages.length) return;
+    this.currentPage.set(page);
+    this.recursosState.set({loading: true, recursos: []});
+    this.recursosService.getAllRecursos(page).subscribe((res) => {
+      this.recursosState.set({loading: false, recursos: res.data});
+    });
+  }
+
   onSearchUpdated(sq: string){
     this.search.set(sq);
   }
@@ -60,6 +85,7 @@ export class GestionRecursosComponent implements OnInit {
   crearRecurso(){
     this.router.navigate(['/inventario/recursos/crear-recurso']);
   }
+
   editarRecurso(id_dici: string){
     this.router.navigate([`/inventario/recursos/editar-recurso/${id_dici}`]);
   }

@@ -25,4 +25,8 @@ export class EstudiantesService {
     return this.httpClient.post(`${this.BASE_URL}/estudiantes`, formData, {});
   }
 
+  cargarMasivaEstudiantes(estudiantesForm : FormData) : Observable<any> {
+    return this.httpClient.post(`${this.BASE_URL}/estudiantes/carga_masiva`, estudiantesForm);
+  }
+
 }

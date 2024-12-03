@@ -20,13 +20,16 @@
         <thead class="text-sm uppercase">
           <tr class="bg-hazy-sky-900 text-hazy-sky-50">
             <th class="px-6 py-3">
-              ID usuario
+              RUT Estudiante
             </th>
             <th class="px-6 py-3">
               Grado
             </th>
             <th class="px-6 py-3">
-              RUT Estudiante
+              ID Usurio
+            </th>
+            <th class="px-6 py-3">
+              Estado
             </th>
             <th class="px-6 py-3">
               Fecha Inicio
@@ -42,20 +45,23 @@
         <tbody>
           @for(penalizacion of penalizaciones(); track penalizacion.id_sanciones){
             <tr class=" border-t  border-hazy-sky-700 text-black">
-              <td class="px-6 py-4 font-medium ">
-                {{penalizacion.id_usuario}}
+              <td class="px-6 py-4">
+                {{penalizacion.rut_estudiante}}
               </td>
               <td class="px-6 py-4 ">
                 {{penalizacion.grado}}
               </td>
-              <td class="px-6 py-4">
-                {{penalizacion.rut_estudiante}}
+              <td class="px-6 py-4 font-medium ">
+                {{penalizacion.id_usuario}}
               </td>
               <td class="px-6 py-4">
-                {{penalizacion.fecha_inicio}}
+                {{penalizacion.estado_sancion}}
               </td>
               <td class="px-6 py-4">
-                {{penalizacion.fecha_final}}
+                {{penalizacion.fecha_inicio | date: 'dd/MM/yyyy' }}
+              </td>
+              <td class="px-6 py-4">
+                {{penalizacion.fecha_final | date: 'dd/MM/yyyy'}}
               </td>
               <td class="px-6 w-1/5 whitespace-nowrap">
                 <button  class="p-1 mr-2 hover:bg-hazy-sky-100 rounded-xl transition">

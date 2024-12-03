@@ -15,6 +15,7 @@ export interface ICrearPenalizacion{
     comentario: string;
     id_usuario: number;
     rut_estudiante: string;
+    estado_sancion: boolean;
 }
 
 export enum grados_sancion{

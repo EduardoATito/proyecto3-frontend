@@ -13,8 +13,8 @@ export class RecursosService {
   private BASE_URL = environment.apiUrl;
   private httpClient = inject(HttpClient);
 
-  getAllRecursos() : Observable<any> {
-    return this.httpClient.get(`${this.BASE_URL}/recursos`);
+  getAllRecursos(page : number, limit = 10) : Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/recursos?page=${page}&limit=${limit}`);
   }
 
   getRecursoByIdDICI(id_uta: number) : Observable<any> {

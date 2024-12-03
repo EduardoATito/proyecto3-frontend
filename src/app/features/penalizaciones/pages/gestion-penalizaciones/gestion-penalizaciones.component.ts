@@ -4,11 +4,12 @@ import { PenalizacionesService } from '../../services/penalizaciones.service';
 import { IPenalizaciones } from '../../interfaces/penalizaciones.interface';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-penalizaciones',
   standalone: true,
-  imports: [SpinnerComponent],
+  imports: [SpinnerComponent , DatePipe],
   templateUrl: './gestion-penalizaciones.component.html',
   styleUrl: './gestion-penalizaciones.component.css',
   animations: [

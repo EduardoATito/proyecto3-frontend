@@ -40,7 +40,7 @@ export class LoginComponent {
     }
 
     const loginData : Login= { 
-      rut: this.loginForm.get('rut')?.value!,
+      correo: this.loginForm.get('rut')?.value!,
       password: this.loginForm.get('password')?.value!
     }
 
