@@ -28,7 +28,7 @@ export class EditarEstudianteComponent {
 
   public formEditarEstudiante = this.formBuilder.group({
     nombre: ['', Validators.required],
-    rut: ['', Validators.required],
+    rut: [{value:'',disabled:true}, Validators.required],
     direccion: ['', Validators.required],
     fono: ['', Validators.required],
     correo: ['', Validators.required],

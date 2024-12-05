@@ -44,7 +44,7 @@ export class EditarRecursoComponent {
   public loadingEditarRecurso = signal(false);
 
   public fromEditarRecurso = this.formGroup.group({
-    id_dici: ['', [Validators.required]],
+    id_dici: [{value:'',disabled:true}, [Validators.required]],
     marca: ['', Validators.required],
     nombre: ['', Validators.required],
     modelo: ['', Validators.required],
