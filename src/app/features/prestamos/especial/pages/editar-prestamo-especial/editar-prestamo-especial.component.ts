@@ -53,6 +53,7 @@ export class EditarPrestamoEspecialComponent implements OnInit {
     this.setPrestamoEspecial();
   }
 
+
   setPrestamoEspecial() {
 
     const id = this.activeRoute.snapshot.params['id'];
