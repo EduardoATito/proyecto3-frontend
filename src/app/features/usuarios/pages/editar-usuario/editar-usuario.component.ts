@@ -66,6 +66,10 @@ export class EditarUsuarioComponent implements OnInit {
 
   }
 
+  cancelar() {
+    this.router.navigate(['/usuarios']);
+  }
+  
   editarUsuario() {
     if (this.fromEditarUsuario.invalid) {
       this.fromEditarUsuario.markAllAsTouched();
