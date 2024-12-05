@@ -5,5 +5,5 @@ export interface Estudiante {
   direccion:         string;
   fono:              string;
   ingreso:           number;
-  estado: number;
+  estado:  boolean;
 }

@@ -45,6 +45,7 @@ export class GestionRecursosComponent implements OnInit {
   public search = signal<string>('');
   public recursos = computed(() => {
     const sq = this.search(); 
+    
     return this.recursosState().recursos.filter((recurso) => recurso.id_dici.toLowerCase().includes(sq.toLowerCase()));
     }
   );
@@ -59,8 +60,9 @@ export class GestionRecursosComponent implements OnInit {
 
 
   getAllRecursos(){
+    console.log(this.currentPage());
     this.recursosState.set({loading: true, recursos: []});
-    this.recursosService.getAllRecursos(1).subscribe((res) => {
+    this.recursosService.getAllRecursos(this.currentPage()).subscribe((res) => {
       this.totalPages = Array.from({length: res.totalPages}, (_, i) => i + 1);
       this.recursosState.set({loading: false, recursos: res.data});
     });
@@ -103,5 +105,7 @@ export class GestionRecursosComponent implements OnInit {
     });
   }
 
-  verRecurso(){}
+  verRecurso(id_dici: string){
+    this.router.navigate(['/inventario/recursos/ver-recurso', id_dici]);
+  }
 }

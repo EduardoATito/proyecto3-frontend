@@ -63,6 +63,9 @@ export class ConfirmarPrestamoComponent {
     });
   }
 
+  cancelarPrestamo() {
+    this.router.navigate(['/prestamos/regular']);
+  }
   confirmarPrestamo() {
 
     const id_usuario = this.jwtService.getIdUsuario();
@@ -80,7 +83,7 @@ export class ConfirmarPrestamoComponent {
         this.toastervice.success('Prestamo creado con exito','Exito',{ positionClass: 'toast-bottom-center'});
       },
       error: (error) => {
-        this.toastervice.error('Error al crear el prestamo','Error',{ positionClass: 'toast-bottom-center'});
+        this.toastervice.error(error.error.message,'Error',{ positionClass: 'toast-bottom-center'});
       }
     });
   }

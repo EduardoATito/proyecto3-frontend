@@ -64,7 +64,6 @@ export class EditarRecursoComponent {
 
   setRecursoByIdDICI() {
     const recursoIdUta = this.activateRouter.snapshot.params['id']
-    console.log(recursoIdUta);
     this.recursoService.getRecursoByIdDICI(recursoIdUta).subscribe((recurso) => {
       console.log(recurso);
       this.recursoState.set({loading: false, recurso});

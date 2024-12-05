@@ -12,12 +12,12 @@ export class PrestamoRegularService {
   private prestamoRegularService = inject(HttpClient);
   private BASE_URL = environment.apiUrl;
 
-  getAllPrestamosRegular() : Observable<any> {
-    return this.prestamoRegularService.get(`${this.BASE_URL}/prestamo-regular`);
+  getAllPrestamosRegular(page :number,limit :number = 10) : Observable<any> {
+    return this.prestamoRegularService.get(`${this.BASE_URL}/prestamo-regular?page=${page}&limit=${limit}`);
   }
   
-  getAllPrestamosRetugularActivos() : Observable<any> {
-    return this.prestamoRegularService.get(`${this.BASE_URL}/prestamo-regular/activos`);
+  getAllPrestamosRetugularActivos(page : number, limit : number = 10) : Observable<any> {
+    return this.prestamoRegularService.get(`${this.BASE_URL}/prestamo-regular/activos?page=${page}&limit=${limit}`);
   }
 
   crearPrestamoRegular(prestamoRegular: CrearPrestamoRegular): Observable<any> {

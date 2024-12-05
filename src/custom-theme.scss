@@ -18,5 +18,36 @@ $frontend-theme: mat.define-theme((
 
 :root {
   @include mat.all-component-themes($frontend-theme);
+
+  @include mat.form-field-overrides((
+    outlined-outline-color: #A2B4DD,
+    outlined-outline-width: 1px,
+    outlined-focus-outline-width: 1px,
+    outlined-caret-color: #2C4477,
+    outlined-hover-outline-color: #A2B4DD,
+    outlined-focus-outline-color:#2C4477,
+    container-height: 1px,
+    container-vertical-padding: 10px,
+  ));
+
+  @include mat.datepicker-overrides((
+    toggle-icon-color: #2C4477,
+    calendar-container-background-color: #060A11,
+    calendar-container-text-color: #C9D4EB,
+    calendar-body-label-text-color: #C9D4EB,
+    calendar-date-text-color: #C9D4EB,
+    calendar-header-text-color: #C9D4EB,
+    calendar-period-button-text-color: #C9D4EB,
+    calendar-navigation-button-icon-color: #C9D4EB,
+    calendar-period-button-icon-color: #C9D4EB,
+    calendar-date-selected-state-text-color: #060A11,
+    calendar-date-in-range-state-background-color:#2C4477,
+    calendar-date-selected-state-background-color: #C9D4EB,
+    toggle-active-state-icon-color: #2C4477
+  ));
+
+  @include mat.icon-overrides((
+    color: #C9D4EB,
+  ))
 }
 

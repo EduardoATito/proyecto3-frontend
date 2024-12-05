@@ -12,8 +12,8 @@ export class UsuariosService {
   private http = inject(HttpClient);
   private BASE_URL = environment.apiUrl;
   
-  getAllUsuarios() : Observable<any> {
-    return this.http.get(`${this.BASE_URL}/usuarios`);
+  getAllUsuarios(page:number, limit: number = 10) : Observable<any> {
+    return this.http.get(`${this.BASE_URL}/usuarios?page=${page}&limit=${limit}`);
   }
 
   getUsuarioById(id_usuario: number) : Observable<any> {

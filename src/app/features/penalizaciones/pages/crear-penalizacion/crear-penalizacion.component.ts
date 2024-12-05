@@ -45,13 +45,12 @@ export class CrearPenalizacionComponent {
       return;
     }
     const id_usuario = this.jwtService.getIdUsuario();
-    const penalizacion : ICrearPenalizacion = {
+    const penalizacion  = {
       
       id_usuario: id_usuario!,
       grado: this.fromCrearPenalizacion.get('grado')?.value!,
       comentario: this.fromCrearPenalizacion.get('comentario')?.value!,
       rut_estudiante: this.fromCrearPenalizacion.get('rut_estudiante')?.value!,
-      estado_sancion: true
     }
 
     this.loadingCrearPenalizacion.set(true);

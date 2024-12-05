@@ -1,4 +1,4 @@
-@if(false){
+@if(loadingDatos()){
   <app-spinner></app-spinner>
 }@else {
   <div 
@@ -11,32 +11,26 @@
     >
       <div class="col-span-1 row-span-1" >
         <div class="bg-white w-full h-40 rounded-md shadow-md flex flex-col items-center justify-center gap-5">
-          <h1 class="text-6xl text-green-700" @notLoading>32</h1>
+          <h1 class="text-6xl text-green-700" @notLoading>{{cantidadRecurso()}}</h1>
           <h2 class="text-xl text-green-500" @notLoading>Cantidad de Recursos</h2>
         </div>
       </div>
       <div class="col-span-1 row-span-1">
         <div class="bg-white w-full h-40 rounded-md shadow-md flex flex-col items-center justify-center gap-5 transition-opacity duration-1000">
-          <h1 class="text-6xl text-hazy-sky-700" @notLoading>500</h1>
+          <h1 class="text-6xl text-hazy-sky-700" @notLoading>{{cantidadEstudiantes()}}</h1>
           <h2 class="text-xl text-hazy-sky-500" @notLoading>Cantidad de Estudiantes</h2>
         </div>
       </div>
       <div class="col-span-1 row-span-1">
         <div class="bg-white w-full h-40 rounded-md shadow-md flex flex-col items-center justify-center gap-5">
-          <h1 class="text-6xl text-red-700" @notLoading>4</h1>
+          <h1 class="text-6xl text-red-700" @notLoading>{{cantidadCategorias()}}</h1>
           <h2 class="text-xl text-red-500" @notLoading>Cantidad de Categorías</h2>
         </div>
       </div>
       <div class="row-span-3" 
-      [class]="isMobile() ? 'col-span-1':'col-span-2'">
-        <div class="bg-white w-full h-96 rounded-md shadow-md flex items-center justify-center p-2">
-          <canvas id="MyChart">{{chartBar}}</canvas>
-        </div>
-      </div>
-      <div class="row-span-3" 
-      [class]="isMobile() ? 'col-span-1':'col-span-1'">
-        <div class="bg-white w-full h-96 rounded-md shadow-md flex items-center justify-center p-2">
-          <canvas id="MyPieChart">{{chartPie}}</canvas>
+      [class]="isMobile() ? 'col-span-1':'col-span-3'">
+        <div class="bg-white h-96 rounded-md shadow-md flex items-center justify-center p-2">
+            <canvas #chart baseChart [type]="pieChartConfig.type" [options]="pieChartConfig.options" [data]="pieChartConfig.data" id="canvas"></canvas>
         </div>
       </div>
     </div>

@@ -44,6 +44,26 @@ export const routes: Routes = [
         then(c => c.SeguimientoPrestamosComponent),
         title: 'Seguimiento'
       },
+      { path: 'prestamos-especiales', loadComponent: () => 
+        import('./features/prestamos/especial/pages/gestion-prestamos-especial/gestion-prestamos-especial.component').
+        then(c => c.GestionPrestamosEspecialComponent),
+        title: 'Prestamos Especiales'
+      },
+      { path: 'prestamos-especiales/crear-prestamos-especial', loadComponent: () => 
+        import('./features/prestamos/especial/pages/crear-prestamo-especial/crear-prestamo-especial.component').
+        then(c => c.CrearPrestamoEspecialComponent),
+        title: 'Crear Prestamo Especial'
+      },
+      { path: 'prestamos-especiales/editar-prestamo-especial/:id', loadComponent: () => 
+        import('./features/prestamos/especial/pages/editar-prestamo-especial/editar-prestamo-especial.component').
+        then(c => c.EditarPrestamoEspecialComponent),
+        title: 'Editar Prestamo Especial'
+      },
+      { path: 'prestamos-especiales/ver-prestamo-especial/:id', loadComponent: () => 
+        import('./features/prestamos/especial/pages/ver-prestamo-especial/ver-prestamo-especial.component').
+        then(c => c.VerPrestamoEspecialComponent),
+        title: 'Ver Prestamo Especial'
+      },
       { path: 'prestamos/historial', loadComponent: () => 
         import('./features/prestamos/historial/pages/historial/historial.component').
         then(c => c.HistorialComponent),
@@ -58,6 +78,11 @@ export const routes: Routes = [
         import('./features/inventario/recursos/pages/crear-recurso/crear-recurso.component').
         then(c => c.CrearRecursoComponent),
         title: 'Crear Recurso'
+      },
+      { path: 'inventario/recursos/ver-recurso/:id', loadComponent: () => 
+        import('./features/inventario/recursos/pages/ver-recurso/ver-recurso.component').
+        then(c => c.VerRecursoComponent),
+        title: 'Ver Recurso'
       },
       { path: 'inventario/recursos/editar-recurso/:id', loadComponent: () => 
         import('./features/inventario/recursos/pages/editar-recurso/editar-recurso.component').
@@ -110,6 +135,22 @@ export const routes: Routes = [
         then(c => c.GestionEstudiantesComponent),
         title: 'Estudiantes'
       },
+      { path: 'estudiantes/crear-estudiante', loadComponent: () => 
+        import('./features/estudiantes/pages/crear-estudiante/crear-estudiante.component').
+        then(c => c.CrearEstudianteComponent),
+        title: 'Crear Estudiante'
+      },
+      { path: 'estudiantes/ver-estudiante/:rut', loadComponent: () => 
+        import('./features/estudiantes/pages/ver-estudiante/ver-estudiante.component').
+        then(c => c.VerEstudianteComponent),
+        title: 'Ver Estudiante'
+      },
+      { path: 'estudiantes/editar-estudiante/:rut', loadComponent: () => 
+        import('./features/estudiantes/pages/editar-estudiante/editar-estudiante.component').
+        then(c => c.EditarEstudianteComponent),
+        title: 'Editar Estudiante'
+      },
+    
     ]
   },
   { path: 'login', loadComponent: () => 

@@ -1,17 +1,18 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CategoriasService } from '../../services/categorias.service';
 import { CategoriasResponse } from '../../interfaces/categorias.interface';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { SpinnerComponent } from '../../../../../shared/components/spinner/spinner.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EliminarCategoriaComponent } from '../eliminar-categoria/eliminar-categoria.component';
+import { LayoutService } from '../../../../../core/layout/layout.service';
 
 
 @Component({
     selector: 'app-gestion-categorias',
-    imports: [DatePipe, SpinnerComponent],
+    imports: [DatePipe, SpinnerComponent, NgClass],
     templateUrl: './gestion-categorias.component.html',
     styleUrl: './gestion-categorias.component.css',
     animations: [
@@ -29,8 +30,17 @@ export class GestionCategoriasComponent implements OnInit {
 
   private categoriasState = signal<{ loading: boolean, categorias: CategoriasResponse[] }>({loading: true, categorias: []});
   private router = inject(Router);
-  public categorias = computed(() => this.categoriasState().categorias);
+  private layout = inject(LayoutService);
+  public categorias = computed(() => {
+    return this.categoriasState().categorias.filter((categoria) => {
+      return categoria.nombre_categoria.toLowerCase().includes(this.sq().toLowerCase());
+    });
+  });
   public loading = computed(() => this.categoriasState().loading);
+
+  public isMobile = computed(() => this.layout.isMobile());
+
+  public sq = signal<string>('');
 
   public eliminarCategoriaDialog = inject(MatDialog);
 
@@ -38,8 +48,9 @@ export class GestionCategoriasComponent implements OnInit {
     this.getAllCategorias();
   }
 
-  editarRecurso(){}
-
+  onSearchUpdated(sq: string){
+    this.sq.set(sq);
+  }
   getAllCategorias(){
     this.categoriasService.getAllCategorias().subscribe((res) => {
       console.log(res);

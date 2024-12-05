@@ -26,15 +26,12 @@ export class EliminarUsuarioComponent {
     const rut = this.data.rut;
     this.usuarioService.eliminarUsuario(rut).subscribe({
       next: () => {
-        this.closeDialog();
-        this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
-          this.router.navigate(['/usuarios']).then(()=>{
-            this.toasterService.success('Usuario eliminado con exito', 'Exito', { positionClass: 'toast-bottom-center' });
-          })
-        })
+        this.dialogRef.close('Usuario eliminado');
+        this.toasterService.success('Usuario eliminado con exito', 'Exito', { positionClass: 'toast-bottom-center' });
+        
       },
       error: (error) => {
-        this.toasterService.error('Error al eliminar el usuario', 'Error', { positionClass: 'toast-bottom-center' });
+        this.toasterService.error(error.error.message, 'Error', { positionClass: 'toast-bottom-center' });
       }
     });
   }

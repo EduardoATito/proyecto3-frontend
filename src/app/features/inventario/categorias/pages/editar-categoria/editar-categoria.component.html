@@ -19,7 +19,8 @@
     
     </form>
     <div class="flex justify-end gap-5 font-medium">
-      <button class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>
+      <button (click)="cancelar()"
+      class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Cancelar</button>
       <button (click)="editarCategoria()" class="bg-hazy-sky-200 flex items-center justify-center p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">
         @if(loadingEditarCategoria()){
           <svg aria-hidden="true" class="w-5 h-5 animate-spin text-white fill-hazy-sky-900 " viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

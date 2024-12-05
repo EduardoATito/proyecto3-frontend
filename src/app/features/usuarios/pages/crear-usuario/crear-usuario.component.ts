@@ -7,6 +7,7 @@ import { RecursosService } from '../../../inventario/recursos/services/recursos.
 import { CrearUsuario, UsuariosResponse } from '../../interfaces/usuarios.interface';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 export enum Roles {
   ADMIN = 'ADMIN',
@@ -14,10 +15,18 @@ export enum Roles {
 }
 
 @Component({
-    selector: 'app-crear-usuario',
-    imports: [ReactiveFormsModule],
-    templateUrl: './crear-usuario.component.html',
-    styleUrl: './crear-usuario.component.css'
+  selector: 'app-crear-usuario',
+  imports: [ReactiveFormsModule],
+  templateUrl: './crear-usuario.component.html',
+  styleUrl: './crear-usuario.component.css',
+  animations: [
+    trigger('notLoading', [
+        transition(':enter', [
+            style({ opacity: 0 }),
+            animate('300ms ease-out', style({ opacity: 1 }))
+        ]),
+    ])
+  ]
 })
 export class CrearUsuarioComponent {
 
@@ -40,6 +49,10 @@ export class CrearUsuarioComponent {
   });
 
   public loadingCrearUsuario = signal(false);
+
+  cancelar() {
+    this.router.navigate(['/usuarios']);
+  }
 
   crearUsuario(){
     console.log('boton crear usuario');

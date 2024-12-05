@@ -91,4 +91,7 @@ export class EditarCategoriaComponent implements OnInit {
       },
     });
   }
+  cancelar(){
+    this.router.navigate(['/inventario/categorias']);
+  }
 }

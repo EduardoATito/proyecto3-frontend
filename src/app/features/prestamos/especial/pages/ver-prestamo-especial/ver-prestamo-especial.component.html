@@ -1,0 +1,48 @@
+<div
+@notLoading>
+  <div>
+    <h1 class="text-2xl mb-6 font-semibold text-hazy-sky-800 ">Editar Prestamo Especial</h1>
+  </div>
+  <form [formGroup]="formVerPrestamoEspecial" class="grid gap-x-4 gap-y-2 mb-8"
+  [class]="isMobile()?'grid-cols-2':'grid-cols-3'"
+  >
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">RUT</label>
+      <input formControlName="rut_estudiante" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('rut_estudiante')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('rut_estudiante')? 'visible':'invisible'">Campo requerido.</span>
+    </div>  
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">DICI ID</label>
+      <input formControlName="id_dici" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('id_dici')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('id_dici')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Motivo</label>
+      <input formControlName="motivo" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('motivo')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('motivo')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Descripción</label>
+      <input formControlName="descripcion" class="bg-blue-sky focus:outline-none border rounded-lg p-2"
+      [class]="hasRequiredError('descripcion')? 'border-red-600':'border-hazy-sky-600'"/>
+      <span class="text-red-600 text-sm mt-1" [class]="hasRequiredError('descripcion')? 'visible':'invisible'">Campo requerido.</span>
+    </div>
+    <div class="flex flex-col">
+      <label class="mb-2 font-medium">Rango de Fechas</label>
+      <mat-form-field appearance="outline">
+        <mat-date-range-input [formGroup]="formVerPrestamoEspecial" [rangePicker]="picker">
+          <input matStartDate formControlName="fecha_inicio" placeholder="Fecha de Inicio">
+          <input matEndDate formControlName="fecha_fin" placeholder="Fecha de Termino">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="flex justify-end gap-5 font-medium">
+    <button (click)="volver()" class="bg-hazy-sky-200 p-2 px-3 rounded-md text-hazy-sky-950 hover:bg-great-blue-100 transition">Volver a la gestión</button>
+  </div>
+</div>

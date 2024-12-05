@@ -4,12 +4,21 @@ import { LayoutService } from '../../../../../core/layout/layout.service';
 import { CategoriasService } from '../../services/categorias.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-crear-categoria',
     imports: [ReactiveFormsModule],
     templateUrl: './crear-categoria.component.html',
-    styleUrl: './crear-categoria.component.css'
+    styleUrl: './crear-categoria.component.css',
+    animations: [
+      trigger('notLoading', [
+          transition(':enter', [
+              style({ opacity: 0 }),
+              animate('300ms ease-out', style({ opacity: 1 }))
+          ]),
+      ])
+  ]
 })
 export class CrearCategoriaComponent {
 
@@ -56,5 +65,9 @@ export class CrearCategoriaComponent {
   hasRequiredError(controlName: string) {
     const control = this.formCrearCategoria.get(controlName);
     return control?.hasError('required') && control?.touched ;
+  }
+
+  cancelar(){
+    this.router.navigate(['/inventario/categorias']);
   }
 }

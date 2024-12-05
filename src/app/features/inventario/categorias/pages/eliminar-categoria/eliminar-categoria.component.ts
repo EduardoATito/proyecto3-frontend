@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-eliminar-categoria',
-    imports: [MatDialogActions, MatDialogClose, MatDialogContent],
     templateUrl: './eliminar-categoria.component.html',
     styleUrl: './eliminar-categoria.component.css'
 })
@@ -31,7 +30,7 @@ export class EliminarCategoriaComponent {
         })
       },
       error: (err) => {
-        this.toasterService.error('Error al eliminar la categoria', 'Error', { positionClass: 'toast-bottom-center' });
+        this.toasterService.error(err.error.message, 'Error', { positionClass: 'toast-bottom-center' });
       },
     });
   }

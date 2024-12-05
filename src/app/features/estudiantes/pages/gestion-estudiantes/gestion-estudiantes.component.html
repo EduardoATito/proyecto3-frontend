@@ -71,7 +71,7 @@
         </thead>
         <tbody>
           @for(estudiante of estudiantes(); track estudiante.rut){
-            <tr class=" border-t border-hazy-sky-700 text-black">
+            <tr class=" border-t border-hazy-sky-700 text-black odd:bg-hazy-sky-50 even:bg-hazy-sky-100">
               <td class="px-6 py-4 text-nowrap">
                 {{estudiante.rut}}
               </td>
@@ -94,28 +94,66 @@
                   <span class="bg-red-100 text-red-800 p-2 rounded-md">Inactivo</span>
                 }
               </td>
-              <td class="px-6 w-1/5 whitespace-nowrap">
-                <button (click)="verEstudiante()" class="p-1 mr-2 hover:bg-hazy-sky-100 rounded-xl transition">
+              <td class="px-6 py-4 whitespace-nowrap flex gap-1">
+                
+                <button (click)="verEstudiante(estudiante.rut)" class="p-1 hover:bg-hazy-sky-100 rounded-xl transition">
                   <svg class="w-6 h-6 text-hazy-sky-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
                     <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                   </svg>                              
                 </button>
-                <button (click)="editarEstudiante(estudiante.rut)" class="p-1 mr-2 hover:bg-yellow-100 rounded-xl transition">
+                <button (click)="editarEstudiante(estudiante.rut)" class="p-1 hover:bg-yellow-100 rounded-xl transition">
                   <svg class="w-6 h-6 text-yellow-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                   </svg>                
                 </button>
-                <button (click)="eliminarEstudiante(estudiante.rut)" class="p-1 mr-2 hover:bg-red-100 rounded-xl transition">
-                  <svg class="w-6 h-6 text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                  </svg>                             
-                </button>
+                <div class="p-1 hover:bg-hazy-sky-200 rounded-xl transition">
+                  <qrcode class="hidden" (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+                  <a (click)="downloadQR(estudiante.rut)" [href]="qrCodeDownloadLink" download="qrcode" >
+                    <svg class="w-6 h-6 text-gray-800 text-hazy-sky-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
+                      <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
+                    </svg>                             
+                  </a>
+                </div>
               </td>
             </tr>
           }
         </tbody>
     </table>
   </div>
+  <nav class="mt-3 flex items-end justify-center">
+    <ul class="flex items-center -space-x-px h-8 ">
+      <li>
+        <button href="#"
+        (click)="onPageChange(currentPage() - 1)"
+         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight hover:bg-great-blue-700 text-hazy-sky-50 bg-hazy-sky-900 border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100">
+          <span class="sr-only">Previous</span>
+          <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+          </svg>
+        </button>
+      </li>
+      @for(page of totalPages; track $index) {
+        <li>
+          <button 
+          (click)="onPageChange(page)"
+          class="flex items-center justify-center px-3 h-8 hover:bg-great-blue-700 leading-tight text-hazy-sky-50 bg-hazy-sky-900 border border-hazy-sky-400">
+            {{page}}
+          </button>
+        </li>
+      }
+      <li>
+        <button href="#"
+        (click)="onPageChange(currentPage() + 1)"
+        class="flex items-center justify-center px-3 h-8 leading-tight hover:bg-great-blue-700 text-hazy-sky-50 bg-purple-heart-900 border border-hazy-sky-400 rounded-e-lg">
+          <span class="sr-only">Next</span>
+          <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>
 }

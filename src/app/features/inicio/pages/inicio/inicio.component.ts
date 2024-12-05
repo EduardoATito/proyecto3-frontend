@@ -1,69 +1,38 @@
-import { AfterViewInit, Component, computed, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { SpinnerComponent } from '../../../../shared/components/spinner/spinner.component';
 import { LayoutService } from '../../../../core/layout/layout.service';
 import { Chart, registerables, ChartConfiguration } from 'chart.js';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { EstadisticasService } from '../../services/estadisticas.service';
+import { BaseChartDirective } from 'ng2-charts';
+
 Chart.register(...registerables);
 @Component({
-    selector: 'app-inicio',
-    imports: [SpinnerComponent],
-    templateUrl: './inicio.component.html',
-    styleUrl: './inicio.component.css',
-    animations: [
-        trigger('notLoading', [
-            transition(':enter', [
-                style({ opacity: 0, transform: 'scale(0.5)' }),
-                animate('1000ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
-            ]),
-        ])
-    ]
+  selector: 'app-inicio',
+  imports: [SpinnerComponent, BaseChartDirective],
+  templateUrl: './inicio.component.html',
+  styleUrl: './inicio.component.css',
+  animations: [
+      trigger('notLoading', [
+          transition(':enter', [
+              style({ opacity: 0, transform: 'scale(0.5)' }),
+              animate('1000ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+          ]),
+      ])
+  ]
 })
-export class InicioComponent implements AfterViewInit, OnInit {
-  
-  ngOnInit() {
-
-  }
- 
-  
+export class InicioComponent implements OnInit {
+   
   private layoutService = inject(LayoutService);
   public isMobile = computed(() => this.layoutService.isMobile());
-  public chartBar : any;
-  public chartPie : any;
-  public config : ChartConfiguration = {
-    type: 'bar',
-    data: {
-      labels: ['JAN', 'FEB', 'MAR', 'APRIL'],
-      datasets: [
-        {
-          label: 'Sales',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: '#1D2C4E',
-        },
-        {
-          label: 'Views',
-          data: [2, 3, 20, 5, 1, 4],
-          backgroundColor: '#447CD9',
-        }
-      ]
-    },
-    options: {
-      aspectRatio:2.5,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Sales and Views',
-          font: {
-            size: 20,
-          }
-        }
-      }
-    },
-  };
+  private staditcsService = inject(EstadisticasService);
 
+
+  public reucursosPorCategoria = signal<{categoria: string, cantidad: number}[]>([]);
   public pieChartConfig : ChartConfiguration = {
     type: 'pie',
     data: {
-      labels: ['Monitores', 'Teclados', 'Meta Quest', 'Computadores'],
+      labels: ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4'],
       datasets: [
         {
           label: 'Cantidad',
@@ -73,7 +42,7 @@ export class InicioComponent implements AfterViewInit, OnInit {
       ]
     },
     options: {
-      aspectRatio:1,
+      aspectRatio:2,
       plugins: {
         title: {
           display: true,
@@ -83,18 +52,47 @@ export class InicioComponent implements AfterViewInit, OnInit {
           }
         },
         legend: {
-          position: 'bottom',
+          position:'left',
+          labels: {
+            font: {
+              size: 24,
+            }
+          }
         }
       }
     },
   };
+
+  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
+  
+  public loadingDatos = signal<boolean>(true);
+  public cantidadRecurso = signal<number>(0);
+  public cantidadEstudiantes = signal<number>(0);
+  public cantidadCategorias = signal<number>(0);
  
-  ngAfterViewInit(): void {
-    this.loadChart();
+  ngOnInit() {
+    this.setDatos()
   }
 
-  loadChart(){
-    this.chartPie = new Chart('MyPieChart', this.pieChartConfig);
-    this.chartBar = new Chart('MyChart', this.config);
+  setDatos(){
+    this.staditcsService.getCantidadRecursos().subscribe((res) => {
+      this.cantidadRecurso.set(res.count);
+      this.staditcsService.getCantidadEstudiantes().subscribe((res) => {
+        this.cantidadEstudiantes.set(res.count); 
+        this.staditcsService.getCantidadCategorias().subscribe((res) => {
+          console.log(res);
+          this.cantidadCategorias.set(res.count);
+          
+          this.staditcsService.getCantidadRecursosPorCategoria().subscribe((res) => {
+            this.reucursosPorCategoria.set(res);
+            this.pieChartConfig.data.labels = res.map((r : any) => r.categoria);
+            this.pieChartConfig.data.datasets[0].data = res.map((r:any) => r.cantidad);
+            this.loadingDatos.set(false);
+          });
+        });
+      });
+    });
   }
+
+
 }

@@ -13,7 +13,7 @@ export class PenalizacionesService {
   private httpClient = inject(HttpClient);
 
 
-  public createPenalizacion(penalizacion: ICrearPenalizacion): Observable<any> {
+  public createPenalizacion(penalizacion : any): Observable<any> {
     return this.httpClient.post(`${this.BASE_URL}/penalizaciones`, penalizacion);
   }
 

@@ -2,28 +2,44 @@
   <app-spinner></app-spinner>
 }
 @else{
-  <div>
+  <div
+  @notLoading>
     <div  class="mb-5 text-hazy-sky-900">
-      <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Seleccione un recurso.</h1>
+      <h1 class="text-2xl mb-4 font-semibold text-hazy-sky-800 ">Seleccione un recurso</h1>
+    </div>
+    <div class="flex flex-row mb-4 w-full justify-between">
+      <div class="relative mt-1 flex gap-5">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none" >
+          <svg class="w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+        </div>
+          <input 
+          class="bg-blue-sky text-hazy-sky-800 focus:outline-none border-2 border-hazy-sky-200 text-sm rounded-lg p-2 ps-10 focus:border-hazy-sky-700"
+          [ngClass]="{'w-80': !isMobile(), 'w-40': isMobile()}"
+          placeholder="Buscar por ID DICI" 
+          #searchQuery
+           (input)="onSearchUpdated(searchQuery.value)"
+          >
+  
+      </div>
     </div>
     <div class="relative overflow-x-auto shadow-md rounded-md">
       <table class="w-full text-sm text-left">
           <thead class="text-sm uppercase">
             <tr class="bg-hazy-sky-900 text-hazy-sky-50">
-              <th class="p-4">
-                <div class="flex items-center">
-                  <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-hazy-sky-400 rounded focus:ring-hazy-sky-500 focus:ring-2">
-                  <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                </div>
-              </th>
               <th class="px-6 py-3">
                   Id DICI
               </th>
               <th class="px-6 py-3">
                   Modelo
               </th>
+              
               <th class="px-6 py-3">
                   Marca
+              </th>
+              <th class="px-6 py-3">
+                Estado
               </th>
               <th class="px-6 py-3">
                   Descripcion
@@ -35,32 +51,54 @@
           </thead>
           <tbody>
             @for(recurso of recursos(); track recurso.id_dici){
-              <tr class=" border-t  border-hazy-sky-700 text-black">
-                <td class="w-4 p-4">
-                  <div class="flex items-center">
-                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                  </div>
-                </td>
-                <td class="px-6 py-4 font-medium ">
-                  {{recurso.id_dici}}
-                </td>
-                <td class="px-6 py-4 ">
-                  {{recurso.modelo}}
-                </td>
-                <td class="px-6 py-4">
-                  {{recurso.marca}}
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex w-80">
-                    {{recurso.descripcion}}
-                  </div>
-                </td>
-                <td class="px-6 w-1/5 whitespace-nowrap">
-                  <button (click)="onPrestar(recurso.id_dici)" class="p-2 font-medium bg-hazy-sky-200 text-hazy-sky-900 rounded-lg transition hover:bg-hazy-sky-100">
-                    Prestar                           
-                  </button>
-                </td>
+              <tr class=" border-t  border-hazy-sky-700 text-black odd:bg-hazy-sky-50 even:bg-hazy-sky-100">
+                @if(!recurso.estado_recurso){
+                  <td class="px-6 py-4 font-medium ">
+                    {{recurso.id_dici}}
+                  </td>
+                  <td class="px-6 py-4 ">
+                    {{recurso.modelo}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{recurso.marca}}
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="bg-red-100 text-red-800 p-2 rounded-md">Ocupado</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex w-80">
+                      {{recurso.descripcion}}
+                    </div>
+                  </td>
+                  <td class="px-6 w-1/5 whitespace-nowrap">
+                    <button disabled (click)="onPrestar(recurso.id_dici)" class="p-2 font-medium bg bg-hazy-sky-900 text-hazy-sky-50 rounded-lg transition opacity-15 hover:bg-hazy-sky-700">
+                      Prestar                           
+                    </button>
+                  </td>
+                }@else{
+                  <td class="px-6 py-4 font-medium ">
+                    {{recurso.id_dici}}
+                  </td>
+                  <td class="px-6 py-4 ">
+                    {{recurso.modelo}}
+                  </td>
+                  <td class="px-6 py-4">
+                    {{recurso.marca}}
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="bg-green-100 text-green-800 p-2 rounded-md">Disponible</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex w-80">
+                      {{recurso.descripcion}}
+                    </div>
+                  </td>
+                  <td class="px-6 w-1/5 whitespace-nowrap">
+                    <button (click)="onPrestar(recurso.id_dici)" class="p-2 font-medium bg-hazy-sky-900 text-hazy-sky-50 rounded-lg transition hover:bg-hazy-sky-700">
+                      Prestar                           
+                    </button>
+                  </td>
+                }
               </tr>
             }
           </tbody>

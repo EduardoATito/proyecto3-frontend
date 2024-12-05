@@ -6,14 +6,22 @@ import { CategoriasService } from '../../../categorias/services/categorias.servi
 import { single } from 'rxjs';
 import { CategoriasResponse } from '../../../categorias/interfaces/categorias.interface';
 import { RecursosService } from '../../services/recursos.service';
-import { trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-crear-recurso',
     imports: [ReactiveFormsModule, ToastrModule],
     templateUrl: './crear-recurso.component.html',
-    styleUrl: './crear-recurso.component.css'
+    styleUrl: './crear-recurso.component.css',
+    animations: [
+      trigger('notLoading', [
+          transition(':enter', [
+              style({ opacity: 0 }),
+              animate('300ms ease-out', style({ opacity: 1 }))
+          ]),
+      ])
+  ]
 })
 export class CrearRecursoComponent implements OnInit{
 
@@ -79,6 +87,10 @@ export class CrearRecursoComponent implements OnInit{
       }
     });
     
+  }
+
+  cancelar() {
+    this.router.navigate(['/inventario/recursos']);
   }
 
   hasRequiredError(controlName: string) {
