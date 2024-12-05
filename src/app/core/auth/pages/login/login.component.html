@@ -20,12 +20,12 @@
         <div class="flex flex-col gap-10 mb-10">
           <form [formGroup]="loginForm" >
             <div class="flex flex-col">
-              <label class="text-xl font-medium mb-1 text-hazy-sky-800" for="">Correo</label>
+              <label class="text-xl font-medium mb-2 text-hazy-sky-800" for="">Correo</label>
               <input class="outline-none border rounded-md p-2 border-hazy-sky-300" formControlName="rut" type="text">
             </div>
             <div class="flex flex-col">
-              <label class="text-xl font-medium mb-1 text-hazy-sky-800" for="">Contraseña</label>
-              <input class="outline-none border rounded-md p-2 border-hazy-sky-300" formControlName="password" type="text" >
+              <label class="text-xl font-medium mb-2 text-hazy-sky-800" for="">Contraseña</label>
+              <input type="password" class="outline-none border rounded-md p-2 border-hazy-sky-300" formControlName="password" type="text" >
             </div>
           </form>
         </div>
